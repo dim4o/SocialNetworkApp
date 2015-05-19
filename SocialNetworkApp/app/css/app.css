@@ -2,6 +2,71 @@
 	width: 100%;
 }
 
+.searchBox {
+	/*background: #cfcfcf;*/
+	position: absolute;
+	z-index: 100;
+	background: white;
+	/*top: 100px;*/
+	width: 200px;
+	border: 1px solid rgba(0, 22, 46, 0.62);
+}
+
+.searchBox img {
+	width: 50px;
+	height: 50px;
+}
+
+.ownFriendsImages {
+	display: inline-block;
+	border: 1px solid rgba(81, 81, 81, 1);
+}
+.post {
+	/*border: 1px solid grey;*/
+}
+.ownFriendsImages img{
+	display: block;
+}
+
+.post-profile-image {
+	width: 100px;
+	height: 100px;
+	padding: 0;
+	border: 1px solid grey;
+	/*overflow: hidden;*/
+}
+
+.comment-profile-image {
+	width: 80px;
+	height: 80px;
+	padding: 0;
+	border: 1px solid grey;
+	/*overflow: hidden;*/
+}
+
+.post-profile-image img, .comment-profile-image img {
+	width: 100%;
+	height: 100%;
+}
+
+.post-details {
+	/*display: inline-block;*/
+}
+.post-profile-image {
+	/*display: inline-block;*/
+}
+
+.pesho {
+	color:red;
+}
+
+.pesho:hover {
+	color:blue 
+}
+.even_row {
+	background: red;
+}
+
 .btn-file {
 	position: relative;
 	overflow: hidden;

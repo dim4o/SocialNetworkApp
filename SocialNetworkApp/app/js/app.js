@@ -1,8 +1,10 @@
 var socialNetworkApp = angular.module('socialNetworkApp',
-    ['ngRoute'])
+    ['ngRoute'])//'ui.bootstrap', 'mgcrea.ngStrap', 'LiveSearch'
     .config(function ($routeProvider) {
         $routeProvider.when('/', {
-            templateUrl: 'templates/welcome.html'
+            //templateUrl: 'templates/welcome.html'
+            templateUrl: 'templates/news-feed.html',
+            controller: 'userHomeController'
         });
         $routeProvider.when('/register', {
             templateUrl: 'templates/register.html',
@@ -20,8 +22,8 @@ var socialNetworkApp = angular.module('socialNetworkApp',
             templateUrl: 'templates/change-password.html',
             controller: 'changePasswordController'
         })
-            .otherwise({
-                redirectTo: '/'
-            });
+        .otherwise({
+            redirectTo: '/'
+        });
     })
     .constant('baseServiceUrl',  'http://softuni-social-network.azurewebsites.net/api/');

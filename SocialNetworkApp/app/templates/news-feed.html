@@ -1,0 +1,92 @@
+<div class="row col-md-12" ng-controller="userHomeController">
+    <div class="col-md-8" >
+        <div class="col-md-10 col-md-offset-1">
+            <div ng-repeat="feed in newsFeedsData">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row panel-body">
+                            <div class="post-profile-image col-md-4">
+                                <img ng-src="{{feed.author.profileImageData}}" alt=""/><br/>
+                            </div>
+
+                            <div class="post-details col-md-8">
+                                <span><strong>{{feed.author.name}}</strong></span><br/>
+                                <span>{{feed.date | date:'d MMM yyyy HH:mm:ss'}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-12"></div>
+                        {{feed.postContent}} <br/>
+                    </div>
+                    <div class="panel-heading">
+                        <span class="pull-right">
+                            Likes: <span class="badge">{{feed.likesCount}}</span>
+                        </span>
+
+                        <span class="pull-right">
+                            Comments: <span class="badge">{{feed.totalCommentsCount}}</span>
+                        </span>
+                        <a ng-if="isLiked(feed)" ng-click="likePost(feed)">
+                            <button class="btn btn-primary btn-xs">Like</button>
+                        </a>
+                        <a ng-if="isNotLiked(feed)" ng-click="unlikePost(feed)">
+                            <button class="btn btn-primary btn-xs">Unlike</button>
+                        </a>
+                        <a ng-click="showComments()" ng-if="!isShowComment">
+                            <button class="btn btn-primary btn-xs">Show comments</button>
+                        </a>
+                        <a ng-click="hideComments()" ng-if="isShowComment">
+                            <button class="btn btn-primary btn-xs">Hide comments</button>
+                        </a>
+                    </div>
+                </div>
+                <div ng-repeat="comment in feed.comments" ng-if="isShowComment" class="col-md-10 pull-right">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="comment-profile-image col-md-4">
+                                    <img ng-src="{{comment.author.profileImageData}}" alt=""/>
+                                </div>
+                                <div class="col-md-8">
+                                    <span><strong>{{comment.author.name}}</strong></span>
+                                    <span>{{comment.date | date:'d MMM yyyy HH:mm:ss'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            {{comment.commentContent}}<br/>
+                        </div>
+                        <div class="panel-heading">
+                            <span class="pull-right">Likes:{{comment.likesCount}}</span>
+                            <!--<span class="pull-right">Comments:{{feed.totalCommentsCount}}</span>-->
+                            <a ng-if="isLiked(comment)" ng-click="likeComment(feed.id, comment)">
+                                <button class="btn btn-primary btn-xs">Like</button>
+                            </a>
+                            <a ng-if="isNotLiked(comment)" ng-click="unlikeComment(feed.id, comment)">
+                                <button class="btn btn-primary btn-xs">Unlike</button>
+                            </a>
+                            <!--{{comment}}-->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--<div class="row panel panel-default">-->
+            <!--<div class="panel-heading">Panel heading</div>-->
+            <!--<div class="panel-body">-->
+                <!--Panel content-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+
+    <div class="col-md-4">
+        <div ng-repeat="user in users" class="ownFriendsImages">
+            <img ng-src="{{user.profileImageData}}" alt="" width="100px" height="100px"/>
+            <span>{{user.name}}</span>
+        </div>
+    </div>
+</div>
+<!--width="50px" height="50px"-->
