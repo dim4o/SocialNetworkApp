@@ -5,19 +5,23 @@ var socialNetworkApp = angular.module('socialNetworkApp',
             templateUrl: 'templates/welcome.html'
         });
         $routeProvider.when('/register', {
-            templateUrl: 'templates/register.html'
+            templateUrl: 'templates/register.html',
+            controller: 'registerController'
         });
         $routeProvider.when('/login', {
-            templateUrl: 'templates/login.html'
+            templateUrl: 'templates/login.html',
+            controller: 'loginController'
         });
         $routeProvider.when('/edit-profile', {
             templateUrl: 'templates/edit-profile.html',
+            controller: 'editProfileController'
         });
         $routeProvider.when('/change-password', {
             templateUrl: 'templates/change-password.html',
+            controller: 'changePasswordController'
         })
-        .otherwise({
-            redirectTo: '/'
-        });
+            .otherwise({
+                redirectTo: '/'
+            });
     })
     .constant('baseServiceUrl',  'http://softuni-social-network.azurewebsites.net/api/');
