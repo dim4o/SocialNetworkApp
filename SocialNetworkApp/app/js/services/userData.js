@@ -74,6 +74,16 @@
         var getFriendRequests = function () {
             return userDataRequester('GET', baseServiceUrl + 'me/requests', null)
         };
+
+        var approveFriendRequest = function (requestId) {
+            return userDataRequester('PUT', baseServiceUrl
+                + 'me/requests/' + requestId + '?status=approved')
+        };
+
+        var rejectFriendRequest = function (requestId) {
+            return userDataRequester('PUT', baseServiceUrl
+                + 'me/requests/' + requestId + '?status=rejected')
+        };
         
         //var addCommentToPost = function (postId) {
         //    return userDataRequester('POST', baseServiceUrl + 'Posts/' +
@@ -93,7 +103,9 @@
             unlikePost: unlikePost,
             likeComment: likeComment,
             unlikeComment: unlikeComment,
-            getFriendRequests: getFriendRequests
+            getFriendRequests: getFriendRequests,
+            approveFriendRequest: approveFriendRequest,
+            rejectFriendRequest: rejectFriendRequest
             //addCommentToPost: addCommentToPost
         };
         ////userData.$inject = ['$http', '$q', 'baseServiceUrl', 'userIdentity', 'authorization'];

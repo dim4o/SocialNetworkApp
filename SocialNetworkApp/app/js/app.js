@@ -1,29 +1,65 @@
-var socialNetworkApp = angular.module('socialNetworkApp',
-    ['ngRoute'])//'ui.bootstrap', 'mgcrea.ngStrap', 'LiveSearch'
-    .config(function ($routeProvider) {
-        $routeProvider.when('/', {
-            //templateUrl: 'templates/welcome.html'
-            templateUrl: 'templates/news-feed.html',
-            controller: 'userHomeController'
-        });
-        $routeProvider.when('/register', {
+var socialNetworkApp = angular.module('socialNetworkApp',['ngRoute']);//'ui.bootstrap', 'mgcrea.ngStrap', 'LiveSearch'
+socialNetworkApp.config(['$routeProvider',
+    function ($routeProvider) {
+        //var routePermissions = {
+        //    isLogged: {
+        //        authenticate: function ($q, authorizationService) {
+        //            if (authorizationService.isLogged() == true) {
+        //                return true;
+        //            } else {
+        //                return $q.reject('not authorized');
+        //            }
+        //        }
+        //    }
+        //};
+        //if (authorizationService.isLogged()) {
+            $routeProvider
+                .when('/logout', {
+                    redirectTo: '/'
+
+                })
+
+                .when('/', {
+                //templateUrl: 'templates/welcome.html'
+                templateUrl: 'templates/mainPageTemplate.html',
+                controller: 'navigationController'
+
+            })
+        //} else {
+        //    $routeProvider.when('/', {
+        //        //templateUrl: 'templates/welcome.html'
+        //        templateUrl: 'templates/welcome.html'
+        //
+        //    });
+        //}
+
+        .when('/register', {
             templateUrl: 'templates/register.html',
             controller: 'registerController'
-        });
-        $routeProvider.when('/login', {
+        })
+        .when('/login', {
             templateUrl: 'templates/login.html',
             controller: 'loginController'
-        });
-        $routeProvider.when('/edit-profile', {
+        })
+        .when('/edit-profile', {
             templateUrl: 'templates/edit-profile.html',
             controller: 'editProfileController'
-        });
-        $routeProvider.when('/change-password', {
+        })
+        .when('/change-password', {
             templateUrl: 'templates/change-password.html',
             controller: 'changePasswordController'
         })
+                //.when('/logout', {
+                //    //templateUrl: 'templates/welcome.html'
+                //    templateUrl: 'templates/mainPageTemplate.html',
+                //    controller: 'navigationController'
+                //
+                //})
+
         .otherwise({
-            redirectTo: '/'
+            redirectTo: '/',
+                    templateUrl: 'templates/mainPageTemplate.html',
+                    controller: 'navigationController'
         });
-    })
-    .constant('baseServiceUrl',  'http://softuni-social-network.azurewebsites.net/api/');
+    }]);
+socialNetworkApp.constant('baseServiceUrl',  'http://softuni-social-network.azurewebsites.net/api/');

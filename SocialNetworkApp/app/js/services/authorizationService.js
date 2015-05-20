@@ -23,10 +23,16 @@ function authorizationService($window) {
         $window.sessionStorage.clear();
     }
 
+    function isLogged() {
+        console.log('dasdas');
+        return !!getAccessToken();
+    }
+
     return {
         setAccessToken: setAccessToken,
         getAccessToken: getAccessToken,
         getUsername: getUsername,
-        cleanSessionStorage: cleanSessionStorage
+        cleanSessionStorage: cleanSessionStorage,
+        isLogged: isLogged
     }
 }

@@ -15,6 +15,11 @@ socialNetworkApp.controller('editProfileController',
                 })
         };
 
+        $scope.isEmptyImage = function (image) {
+
+            return image !== './img/defaultProfileImage.png';
+        };
+
 
         //$scope.addImage = function (myFile) {
         //    console.log(myFile);
@@ -22,7 +27,18 @@ socialNetworkApp.controller('editProfileController',
 
 
         $scope.user = JSON.parse(sessionStorage['userData']);
+        if ($scope.user.profileImageData == null) {
+            //$scope.user.profileImageData = './img/defaultProfileImage.png';
+            console.log($scope.user.profileImageData);
 
+        } else {
+            console.log($scope.user.profileImageData);
+        }
+        //if ($scope.user.coverImageData == null) {
+        //    $scope.user.coverImageData = './img/defaultProfileImage.png';
+        //}
+        console.log($scope.user);
+        console.log($scope.user.profileImageData);
         //$scope.getMyProfileData = function () {
         //    userProfileService.getMyProfileData()
         //        .then(function (userData) {

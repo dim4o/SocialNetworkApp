@@ -1,10 +1,14 @@
+<div class="navbar navbar-default" ng-include="'./templates/navbar.html'"
+     ng-controller="navigationController"></div>
+
 <div class="col-md-8 col-md-offset-2">
     <div class="well bs-component row">
         <div class="col-md-6">
             <span class="btn btn-primary btn-file">
-                Upload <input type="file" fileread="user.profileImageData">
+                Upload <input type="file" read-profile-image="user.profileImageData">
             </span>
-            <img ng-src="{{user.profileImageData}}" alt="" class="imageProfileUploadPreview"/>
+            <img ng-if="!isEmptyImage(user.profileImageData)" ng-src="{{user.profileImageData}}" alt="" class="imageProfileUploadPreview"/>
+            <img ng-if="isEmptyImage(user.profileImageData)" src="./img/defaultProfileImage.png" alt="" class="imageProfileUploadPreview"/>
         </div>
 
         <div class="col-md-6">
@@ -54,7 +58,7 @@
 
                     <div class="col-md-6">
                         <span class="btn btn-primary btn-file">
-                            Upload <input type="file" fileread="user.coverImageData">
+                            Upload <input type="file" read-cover-image="user.coverImageData">
                         </span>
                         <img ng-src="{{user.coverImageData}}" alt="" class="imageProfileUploadPreview"/>
                     </div>
