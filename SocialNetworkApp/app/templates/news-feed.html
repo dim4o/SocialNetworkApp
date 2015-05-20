@@ -16,11 +16,8 @@
         <!--</div>-->
     </div>
 
-    <div class="col-md-4">
-        <div ng-repeat="user in users" class="ownFriendsImages">
-            <img ng-src="{{user.profileImageData}}" alt="" width="100px" height="100px"/>
-            <span>{{user.name}}</span>
-        </div>
+    <div class="col-md-4" ng-include="'./templates/friends-sidebar.html'">
+
     </div>
 </div>
 <!--width="50px" height="50px"-->

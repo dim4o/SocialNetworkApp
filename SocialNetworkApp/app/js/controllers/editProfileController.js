@@ -17,7 +17,7 @@ socialNetworkApp.controller('editProfileController',
 
         $scope.isEmptyImage = function (image) {
 
-            return image !== './img/defaultProfileImage.png';
+            return !image;
         };
 
 

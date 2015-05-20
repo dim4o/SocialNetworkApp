@@ -43,6 +43,10 @@
             return userDataRequester('GET', serviceUrl + 'search?searchTerm=' + name, null);
         };
 
+        var getMyFriendsPreview = function () {
+            return userDataRequester('GET', baseServiceUrl + 'me/friends/preview', null)
+        };
+
         var getOwnFriends = function () {
             return userDataRequester('GET', baseServiceUrl + 'me/friends', null)
         };
@@ -97,6 +101,7 @@
             login: login,
             logout: logout,
             searchUserByName: searchUserByName,
+            getMyFriendsPreview: getMyFriendsPreview,
             getOwnFriends: getOwnFriends,
             getNewsFeedsPages: getNewsFeedsPages,
             likePost: likePost,

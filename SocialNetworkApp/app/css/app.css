@@ -1,4 +1,19 @@
 .imageProfileUploadPreview {
+	width: 300px;
+	height: 300px;
+	overflow: hidden;
+	margin-bottom: 15px;
+}
+
+.imageCoverUploadPreview {
+	width: 360px;
+	height: 150px;
+	overflow: hidden;
+	margin-bottom: 15px;
+
+}
+
+.imageProfileUploadPreview img, .imageCoverUploadPreview img {
 	width: 100%;
 }
 
@@ -19,8 +34,36 @@
 
 .ownFriendsImages {
 	display: inline-block;
-	border: 1px solid rgba(81, 81, 81, 1);
+	/*border: 1px solid rgba(81, 81, 81, 1);*/
+	padding: 0;
+	margin: 0 0 -35px 0;
+
 }
+.ownFriendsImages span {
+	position: relative;
+	float: left;
+	/*border: 1px solid;*/
+	width: 100%;
+	padding: 5px;
+	background: rgba(51, 51, 51, 0.76);
+	color:  white;
+	vertical-align: bottom;
+	height: 35px;
+	top: -35px;
+}
+.ownFriendsImages img, .thumbnail-box {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+/*legend {*/
+	/*margin:3px;*/
+	/*text-align:center;*/
+	/*width:100%;*/
+	/*border: 1px solid;*/
+/*}*/
+
 .post {
 	/*border: 1px solid grey;*/
 }

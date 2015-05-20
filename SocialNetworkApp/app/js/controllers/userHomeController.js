@@ -1,14 +1,19 @@
 socialNetworkApp.controller('userHomeController',
     function userHomeController($scope, userData) {
-        $scope.users = {};
-        userData.getOwnFriends()
-            .then(function (ownFriendsData) {
-                ownFriendsData.forEach(function (user) {
-                    if (!user.profileImageData) {
-                        user.profileImageData = './img/defaultProfileImage.png';
+        $scope.myFriendsData = {};
+        userData.getMyFriendsPreview()
+            .then(function (ownFriendsPreviewData) {
+                //ownFriendsPreviewData.friends.forEach(function (friend) {
+                //    if (!friend.profileImageData) {
+                //        friend.profileImageData = './img/defaultProfileImage.png';
+                //    }
+                //});
+                for (var i = 0; i < ownFriendsPreviewData.friends.length; i++) {
+                    if (!ownFriendsPreviewData.friends[i].profileImageData) {
+                        ownFriendsPreviewData.friends[i].profileImageData = './img/defaultProfileImage.png';
                     }
-                });
-                $scope.users = ownFriendsData;
+                }
+                $scope.myFriendsData = ownFriendsPreviewData;
             }, function (error) {
                 console.log(error);
             });
