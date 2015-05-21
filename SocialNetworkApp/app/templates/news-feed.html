@@ -5,8 +5,12 @@
 <div class="row col-md-12" ng-controller="userHomeController">
     <div class="col-md-8" >
         <div class="col-md-10 col-md-offset-1">
-            <div ng-repeat="feed in newsFeedsData" ng-include="'./templates/post.html'">
+            <div class="clearfix"></div>
+            <div ng-repeat="feed in newsFeedsData">
+                <div ng-include="'./templates/post.html'"></div>
             </div>
+
+            <div class="clearfix"></div>
         </div>
         <!--<div class="row panel panel-default">-->
             <!--<div class="panel-heading">Panel heading</div>-->
@@ -16,7 +20,7 @@
         <!--</div>-->
     </div>
 
-    <div class="col-md-4" ng-include="'./templates/friends-sidebar.html'">
+    <div ng-controller="friendsController" class="col-md-4" ng-include="'./templates/friends-sidebar.html'">
 
     </div>
 </div>

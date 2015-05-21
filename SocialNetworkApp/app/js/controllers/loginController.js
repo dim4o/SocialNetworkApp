@@ -8,30 +8,25 @@
                 userData.login(user)
                     .then(function (data) {
                         authorizationService.setAccessToken(data);
+
+                        //userProfileService.getMyProfileData()
+                        //    .then(function (data) {
+                        //        sessionStorage['userData'] = JSON.stringify(data);
+                        //        //loadData();
+                        //    }, function (error) {
+                        //
+                        //    });
                         $location.path('/');
-                        userProfileService.getMyProfileData()
-                            .then(function (data) {
-                                sessionStorage['userData'] = JSON.stringify(data);
-                                //$scope.img = 'data:image/jpeg;base64,' + JSON.parse(sessionStorage['userData'])['profileImageData'];
-                                //$scope.a = 'aaa';
-                                //if (sessionStorage['userData']) {
-                                //    $scope.profileImage = 'data:image/jpeg;base64,' + JSON.parse(sessionStorage['userData'])['profileImageData'];
-                                //}
-                                loadData();
-                            }, function (error) {
-
-                            });
-
                     }, function (error) {
                         console.log(error);
-                    });
+                    })
             };
-            var loadData = function loadData() {
-                if (sessionStorage['userData']) {
-                    $scope.profileImage = 'data:image/jpeg;base64,'
-                        + JSON.parse(sessionStorage['userData'])['profileImageData'];
-                }
-            }
+            //var loadData = function loadData() {
+            //    if (sessionStorage['userData']) {
+            //        $scope.profileImage = 'data:image/jpeg;base64,'
+            //            + JSON.parse(sessionStorage['userData'])['profileImageData'];
+            //    }
+            //}
 
         });
 }());

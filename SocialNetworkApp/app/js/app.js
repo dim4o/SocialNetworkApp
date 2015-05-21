@@ -28,7 +28,11 @@ socialNetworkApp.config(['$routeProvider',
                 controller: 'changePasswordController'
             })
             .when('/users/:username/friends', {
-                templateUrl: 'templates/change-password.html',
+                templateUrl: 'templates/myFriendsPageTemplate.html',
+                controller: 'friendsController'
+            })
+            .when('/users/:username', {
+                templateUrl: 'templates/myFriendsPageTemplate.html',
                 controller: 'friendsController'
             })
             .otherwise({

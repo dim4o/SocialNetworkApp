@@ -10,6 +10,9 @@
             var headers = {
                 Authorization: 'Bearer ' + authorizationService.getAccessToken()
             };
+            //if () {
+            //
+            //}
 
             $http({
                 method: method,
@@ -52,7 +55,7 @@
         };
 
         var getNewsFeedsPages = function () {
-            return userDataRequester('GET', baseServiceUrl + 'me/feed?StartPostId=&PageSize=5', null)
+            return userDataRequester('GET', baseServiceUrl + 'me/feed?StartPostId=&PageSize=10', null)
         };
 
         var likePost = function (postId) {
@@ -88,11 +91,21 @@
             return userDataRequester('PUT', baseServiceUrl
                 + 'me/requests/' + requestId + '?status=rejected')
         };
+
+        var getPostComments = function (postId) {
+            return userDataRequester('GET', baseServiceUrl + 'posts/' + postId + '/comments')
+        };
         
-        //var addCommentToPost = function (postId) {
-        //    return userDataRequester('POST', baseServiceUrl + 'Posts/' +
-        //        postId + '/comments', null);
-        //};
+        var addCommentToPost = function (postId, comment) {
+            var data = {commentContent: comment};
+            return userDataRequester('POST', baseServiceUrl +
+                'posts/' + postId + '/comments', data);
+        };
+
+        var deleteComment = function (postId, commentId) {
+            return userDataRequester('DELETE', baseServiceUrl +
+                'posts/' + postId + '/comments/' + commentId, null);
+        };
 
 
 
@@ -110,8 +123,10 @@
             unlikeComment: unlikeComment,
             getFriendRequests: getFriendRequests,
             approveFriendRequest: approveFriendRequest,
-            rejectFriendRequest: rejectFriendRequest
-            //addCommentToPost: addCommentToPost
+            rejectFriendRequest: rejectFriendRequest,
+            getPostComments: getPostComments,
+            addCommentToPost: addCommentToPost,
+            deleteComment: deleteComment
         };
         ////userData.$inject = ['$http', '$q', 'baseServiceUrl', 'userIdentity', 'authorization'];
         //

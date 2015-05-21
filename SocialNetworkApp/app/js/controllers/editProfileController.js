@@ -9,6 +9,14 @@ socialNetworkApp.controller('editProfileController',
             userProfileService.editUserProfile(user)
                 .then(function () {
                     alert('Profile edited successfully!');
+
+                        userProfileService.getMyProfileData()
+                            .then(function (userData) {
+                                sessionStorage['userData'] = JSON.stringify(userData);
+                            }, function (error) {
+                                console.log(error);
+                            });
+
                     $location.path('/');
                 }, function error(error) {
                     console.log(error);
@@ -39,13 +47,5 @@ socialNetworkApp.controller('editProfileController',
         //}
         console.log($scope.user);
         console.log($scope.user.profileImageData);
-        //$scope.getMyProfileData = function () {
-        //    userProfileService.getMyProfileData()
-        //        .then(function (userData) {
-        //            console.log(userData);
-        //            $scope.userData.email = 'email';
-        //        }, function (error) {
-        //            console.log(error);
-        //        });
-        //};
+
 });

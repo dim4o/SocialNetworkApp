@@ -1,6 +1,7 @@
 socialNetworkApp.controller('userHomeController',
     function userHomeController($scope, userData) {
         $scope.myFriendsData = {};
+
         userData.getMyFriendsPreview()
             .then(function (ownFriendsPreviewData) {
                 //ownFriendsPreviewData.friends.forEach(function (friend) {
@@ -21,6 +22,7 @@ socialNetworkApp.controller('userHomeController',
         userData.getNewsFeedsPages()
             .then(function (newsFeedsData) {
                 $scope.newsFeedsData = newsFeedsData;
+                $scope.limit = 1000;
             }, function (error) {
                 console.log(error);
             });
@@ -69,18 +71,70 @@ socialNetworkApp.controller('userHomeController',
                 });
         };
 
-        $scope.showComments = function () {
-            $scope.isShowComment = true;
-        };
-
-        $scope.hideComments = function () {
-            $scope.isShowComment = false;
-        };
+        $scope.isShowAllpostComments = false;
 
         $scope.isLiked = function (feed) {
             return !feed.liked;
         };
         $scope.isNotLiked = function (feed) {
             return feed.liked;
+        };
+
+        $scope.showMoreComments = function (feed, i) {
+            console.log(feed.id);
+
+            userData.getPostComments(feed.id)
+                .then(function (allCommentsData) {
+                    $scope.allPostComments = [];
+                    //$scope.allPostComments = allCommentsData;
+                    $scope.isShowAllpostComments = true;
+                    $scope.limit = 1000;
+                    //console.log(allPostComments);
+                    $scope.newsFeedsData[i]['comments'] = allCommentsData;
+                    $scope.allPostComments.forEach(function (comment) {
+                        console.log(comment.commentContent);
+                    })
+
+
+                }, function (error) {
+                    console.log(error);
+                });
+        };
+
+        $scope.showLessComments = function () {
+            $scope.limit = 3;
+            alert('Less');
+        };
+
+        $scope.popupPersonPreview = function () {
+            $scope.showPopup = null;
+            $scope.showPopup = true;
+        };
+
+        $scope.hidePopupPreview = function () {
+            $scope.showPopup = null;
+            $scope.showPopup = false;
+        };
+
+        $scope.addCommentToPost = function (feed, i, comment) {
+            console.log(comment);
+            userData.addCommentToPost(feed.id, comment)
+                .then(function () {
+                    $scope.newsFeedsData[i]['comments'].unshift(comment);
+                    console.log(comment);
+                }, function (error) {
+                    console.log(error);
+                });
+        };
+
+        $scope.deleteComment = function (postId, commentId, i) {
+            console.log(postId);
+            console.log(commentId);
+            userData.deleteComment(postId, commentId)
+                .then(function () {
+                    $scope.newsFeedsData[i]['comments'].splice(i, 1);
+                }, function (error) {
+                    console.log(error);
+                });
         }
 });
