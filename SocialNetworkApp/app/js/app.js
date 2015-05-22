@@ -32,8 +32,8 @@ socialNetworkApp.config(['$routeProvider',
                 controller: 'friendsController'
             })
             .when('/users/:username', {
-                templateUrl: 'templates/myFriendsPageTemplate.html',
-                controller: 'friendsController'
+                templateUrl: 'templates/user-wall.html',
+                controller: 'userWallController'
             })
             .otherwise({
                 redirectTo: '/',

@@ -107,6 +107,29 @@
                 'posts/' + postId + '/comments/' + commentId, null);
         };
 
+        var editComment = function (postId, commentId, comment) {
+            var data = {commentContent: comment};
+            return userDataRequester('PUT', baseServiceUrl +
+                'posts/' + postId + '/comments/' + commentId, comment);
+        };
+
+        var getFriendWallByPages = function (username) {
+            return userDataRequester('GET', baseServiceUrl +
+                'users/' + username+ '/wall?StartPostId=&PageSize=10', null);
+        };
+        
+        var addNewPost = function (username, content) {
+            var data = {
+                postContent: content,
+                username: username
+            };
+            return userDataRequester('POST', baseServiceUrl + 'posts', data)
+        };
+
+        var deletePost = function (postId) {
+            return userDataRequester('DELETE', baseServiceUrl + 'Posts/' + postId, null);
+        };
+
 
 
         return {
@@ -126,7 +149,11 @@
             rejectFriendRequest: rejectFriendRequest,
             getPostComments: getPostComments,
             addCommentToPost: addCommentToPost,
-            deleteComment: deleteComment
+            deleteComment: deleteComment,
+            editComment: editComment,
+            getFriendWallByPages: getFriendWallByPages,
+            addNewPost: addNewPost,
+            deletePost: deletePost
         };
         ////userData.$inject = ['$http', '$q', 'baseServiceUrl', 'userIdentity', 'authorization'];
         //

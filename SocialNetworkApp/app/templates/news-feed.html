@@ -6,7 +6,7 @@
     <div class="col-md-8" >
         <div class="col-md-10 col-md-offset-1">
             <div class="clearfix"></div>
-            <div ng-repeat="feed in newsFeedsData">
+            <div ng-repeat="feed in newsFeedsData" ng-init="parentIndex = $index">
                 <div ng-include="'./templates/post.html'"></div>
             </div>
 
