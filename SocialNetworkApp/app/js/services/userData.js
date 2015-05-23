@@ -107,11 +107,11 @@
                 'posts/' + postId + '/comments/' + commentId, null);
         };
 
-        var editComment = function (postId, commentId, comment) {
-            var data = {commentContent: comment};
-            return userDataRequester('PUT', baseServiceUrl +
-                'posts/' + postId + '/comments/' + commentId, comment);
-        };
+        //var editComment = function (postId, commentId, comment) {
+        //    var data = {commentContent: comment};
+        //    return userDataRequester('PUT', baseServiceUrl +
+        //        'posts/' + postId + '/comments/' + commentId, comment);
+        //};
 
         var getFriendWallByPages = function (username) {
             return userDataRequester('GET', baseServiceUrl +
@@ -128,6 +128,24 @@
 
         var deletePost = function (postId) {
             return userDataRequester('DELETE', baseServiceUrl + 'Posts/' + postId, null);
+        };
+
+        var getUserFullData = function (username) {
+            return userDataRequester('GET', baseServiceUrl + 'users/' + username, null);
+        };
+
+        var getUserPreviewData = function (username) {
+            return userDataRequester('GET', baseServiceUrl + 'users/' + username +
+                '/preview', null)
+        };
+
+        var sendFriendRequest = function (username) {
+            return userDataRequester('POST', baseServiceUrl + 'me/requests/' + username, null)
+        };
+
+        var getFriendsFriendsPreview = function (friendsUsername) {
+            return userDataRequester('GET', baseServiceUrl + 'users/'+
+                friendsUsername +'/friends/preview')
         };
 
 
@@ -150,10 +168,14 @@
             getPostComments: getPostComments,
             addCommentToPost: addCommentToPost,
             deleteComment: deleteComment,
-            editComment: editComment,
+            //editComment: editComment,
             getFriendWallByPages: getFriendWallByPages,
             addNewPost: addNewPost,
-            deletePost: deletePost
+            deletePost: deletePost,
+            getUserFullData: getUserFullData,
+            getUserPreviewData: getUserPreviewData,
+            sendFriendRequest: sendFriendRequest,
+            getFriendsFriendsPreview: getFriendsFriendsPreview
         };
         ////userData.$inject = ['$http', '$q', 'baseServiceUrl', 'userIdentity', 'authorization'];
         //
