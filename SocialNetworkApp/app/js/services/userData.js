@@ -148,6 +148,11 @@
                 friendsUsername +'/friends/preview')
         };
 
+        var getDetailedFriendsFriendsList = function (friendsUsername) {
+            return userDataRequester('GET', baseServiceUrl + 'users/'+
+                friendsUsername +'/friends')
+        };
+
 
 
         return {
@@ -175,7 +180,8 @@
             getUserFullData: getUserFullData,
             getUserPreviewData: getUserPreviewData,
             sendFriendRequest: sendFriendRequest,
-            getFriendsFriendsPreview: getFriendsFriendsPreview
+            getFriendsFriendsPreview: getFriendsFriendsPreview,
+            getDetailedFriendsFriendsList: getDetailedFriendsFriendsList
         };
         ////userData.$inject = ['$http', '$q', 'baseServiceUrl', 'userIdentity', 'authorization'];
         //

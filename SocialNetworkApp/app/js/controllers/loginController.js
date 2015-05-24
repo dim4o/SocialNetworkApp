@@ -7,6 +7,8 @@
                 //alert(user.username);
                 userData.login(user)
                     .then(function (data) {
+                        sessionStorage.setItem('username', user.username);
+                        //alert(sessionStorage['username']);
                         authorizationService.setAccessToken(data);
                         //userProfileService.getMyProfileData()
                         //    .then(function (data) {
@@ -16,7 +18,7 @@
                         //
                         //    });
                         $location.path('/');
-                        //$scope.currentUserUsername = data.username;
+
                     }, function (error) {
                         console.log(error);
                     })

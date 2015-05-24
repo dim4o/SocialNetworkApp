@@ -21,9 +21,8 @@
     </div>
 
 
-    <div ng-controller="friendsController" class="col-md-4"
+    <div ng-controller="friendsController" ng-init="loadFriendsPreview()" class="col-md-4"
          ng-include="'./templates/partials/friends-sidebar.html'">
-
     </div>
 
 </div>
