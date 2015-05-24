@@ -8,7 +8,6 @@
                 userData.login(user)
                     .then(function (data) {
                         authorizationService.setAccessToken(data);
-
                         //userProfileService.getMyProfileData()
                         //    .then(function (data) {
                         //        sessionStorage['userData'] = JSON.stringify(data);
@@ -27,7 +26,6 @@
             //            + JSON.parse(sessionStorage['userData'])['profileImageData'];
             //    }
             //}
-
         });
 }());
 
