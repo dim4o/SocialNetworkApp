@@ -16,6 +16,7 @@
                         //
                         //    });
                         $location.path('/');
+                        //$scope.currentUserUsername = data.username;
                     }, function (error) {
                         console.log(error);
                     })
