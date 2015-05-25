@@ -1,0 +1,66 @@
+<!--<div ng-include="'./templates/navbar.html'"></div>-->
+<div class="navbar navbar-default" ng-include="'./templates/partials/navbar.html'"
+     ng-controller="navigationController"></div>
+
+<div style="margin-bottom: 30px">
+    <div class="row userWallCoverImage">
+        <img ng-src="{{userFullData.coverImageData}}" alt=""/>
+
+    </div>
+    <div class="row userWallProfileImage">
+        <img ng-src="{{userFullData.profileImageData}}"
+             class="" alt=""/>
+    </div>
+    <button ng-if="userFullData.isFriend" ng-disabled="true" class="btn btn-primary">
+        Friends
+    </button>
+    <button ng-if="userFullData.hasPendingRequest" ng-disabled="true" class="btn btn-primary">
+        Pending
+    </button>
+    <button ng-if="!userFullData.isFriend && !userFullData.hasPendingRequest" class="btn btn-primary">
+        Invite
+    </button>
+
+</div>
+
+<div class="row col-md-12" ng-controller="userWallController">
+    <div class="col-md-8" ng-controller="postsController">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="clearfix"></div>
+
+            <div ng-controller="userHomeController" ng-repeat="post in postsData" ng-init="parentIndex = $index">
+                <div ng-include="'./templates/partials/post.html'"></div>
+                <!--userWallData-->
+                <!--{{feed}}-->
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div ng-if="userFullData.isFriend" class="col-md-4">
+        {{userFullData.isFriend}}
+        <div class="well bs-component col-md-12">
+            <form class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <label for="textArea" class="col-lg-2 control-label">Textarea</label>
+                        <div class="col-lg-10">
+                            <textarea ng-model="content" class="form-control" rows="3" id="textArea" placeholder="Message"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button ng-click="addNewPost(content)" type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div ng-controller="friendsController" ng-init="loadFriendsPreview()" class="col-md-12">
+            <div ng-include="'./templates/partials/friends-sidebar.html'"></div>
+        </div>
+    </div>
+</div>
+<!--width="50px" height="50px"-->

@@ -1,0 +1,48 @@
+<!--comment-->
+<div class="panel panel-default row">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="comment-profile-image col-md-4">
+                <img ng-src="{{comment.author.profileImageData}}" alt=""/>
+            </div>
+            <div class="col-md-8">
+                <span ng-init="showDiv = false;"
+                      ng-click="popupPersonPreview(comment.author.username, $index);showDiv = true;"><strong>{{comment.author.name}}</strong></span>
+                <span>{{comment.date | date:'d MMM yyyy HH:mm:ss'}}</span>
+
+                <div ng-mouseleave="showDiv = false;" ng-show="showDiv" class="popupPreview">
+                    <div ng-include="'templates/partials/popupUserDetails.html'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        {{comment.commentContent}}<br/>
+    </div>
+    <div class="panel-heading">
+
+        <span ng-if="isMyOwnWall() || userFullData.isFriend || comment.author.isFriend">
+            <a ng-if="isLiked(comment)" ng-click="likeComment(post.id, comment)">
+                <button class="btn btn-primary btn-xs">Like</button>
+            </a>
+            <a ng-if="isNotLiked(comment)" ng-click="unlikeComment(post.id, comment)">
+                <button class="btn btn-primary btn-xs">Unlike</button>
+            </a>
+        </span>
+
+        <span class="pull-right">Likes:<span class="badge">{{comment.likesCount}}</span></span>
+
+        <a ng-if="isMyOwnWall() || (post.author.username == myUsername())"
+           ng-click="deleteComment(post.id, comment.id, parentIndex, $index)">
+            <button class="btn btn-primary btn-xs">
+                Delete {{parentIndex}} - {{$index}}
+            </button>
+        </a>
+        <a ng-if="comment.author.username == myUsername()" ng-click="editComment(post.id, comment.id, $index)">
+            <button class="btn btn-primary btn-xs">Edit</button>
+        </a>
+        <div class="clearfix"></div>
+        <!--{{comment}}-->
+    </div>
+</div>
+<!--comment-->

@@ -1,0 +1,21 @@
+<div class="modal-content">
+    <div class="modal-body">
+        {{userData.name}} / {{userData.gender | genderFilter}}
+        <img ng-src="{{userData.profileImageData}}" alt=""/>
+    </div>
+    <div class="modal-footer">
+        <button ng-if="!userData.isFriend && !userData.hasPendingRequest && !pending"
+                ng-click="sendFriendRequest(userData.username)" type="button"
+                class="btn btn-primary btn-xs" data-dismiss="modal">
+            Invite
+        </button>
+        <button ng-if="userData.isFriend" ng-disabled="true" type="button"
+                class="btn btn-primary btn-xs" data-dismiss="modal">
+            Friends
+        </button>
+        <button ng-if="userData.hasPendingRequest || pending" ng-disabled="true" type="button"
+                class="btn btn-primary btn-xs" data-dismiss="modal">
+            Pending
+        </button>
+    </div>
+</div>

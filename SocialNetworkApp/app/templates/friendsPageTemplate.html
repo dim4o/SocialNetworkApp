@@ -1,0 +1,23 @@
+<!--<div ng-include="'./templates/navbar.html'"></div>-->
+<div class="navbar navbar-default" ng-include="'./templates/partials/navbar.html'"
+     ng-controller="navigationController"></div>
+
+<div class="row col-md-4" ng-controller="userHomeController">
+     <input  ng-model="friend.name" class="form-control ng-pristine ng-valid ng-touched" placeholder="Search" ng-change="search(searchName)">
+
+     <div ng-controller="friendsController" ng-init="loadFriendsList()">
+          <div ng-repeat="friend in detailedFriendsList | filter: friend">
+               <div class="col-md-4 ownFriendsImages">
+                    <img ng-src="{{friend.profileImageData}}" alt="" class="thumbnail"/>
+                    <span>{{friend.name}}</span>
+               </div>
+          </div>
+     </div>
+
+
+     <!--<div ng-repeat="friend in ownFriends | filter: friend">-->
+          <!--<div>{{friend.name}}</div>-->
+     <!--</div>-->
+
+</div>
+<!--width="50px" height="50px"-->

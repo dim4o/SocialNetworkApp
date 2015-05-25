@@ -1,0 +1,35 @@
+<!--comment-->
+<div class="panel panel-default row">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="comment-profile-image col-md-4">
+                <img ng-src="{{comment.author.profileImageData}}" alt=""/>
+            </div>
+            <div class="col-md-8">
+                <span><strong>{{comment.author.name}}</strong></span>
+                <span>{{comment.date | date:'d MMM yyyy HH:mm:ss'}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        {{comment.commentContent}}<br/>
+    </div>
+    <div class="panel-heading">
+        <span class="pull-right">Likes:{{comment.likesCount}}</span>
+        <!--<span class="pull-right">Comments:{{feed.totalCommentsCount}}</span>-->
+        <a ng-if="isLiked(comment)" ng-click="likeComment(feed.id, comment)">
+            <button class="btn btn-primary btn-xs">Like</button>
+        </a>
+        <a ng-if="isNotLiked(comment)" ng-click="unlikeComment(feed.id, comment)">
+            <button class="btn btn-primary btn-xs">Unlike</button>
+        </a>
+        <a ng-click="deleteComment(feed.id, comment.id, parentIndex, $index)">
+            <button class="btn btn-primary btn-xs">Delete {{parentIndex}} - {{$index}}</button>
+        </a>
+        <a ng-click="editComment(feed.id, comment.id, $index)">
+            <button class="btn btn-primary btn-xs">Edit</button>
+        </a>
+        <!--{{comment}}-->
+    </div>
+</div>
+<!--comment-->
