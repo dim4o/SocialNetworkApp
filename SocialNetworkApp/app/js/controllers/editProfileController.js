@@ -1,15 +1,12 @@
 socialNetworkApp.controller('editProfileController',
-    function socialNetworkApp($scope, $location, userProfileService) {
+    function socialNetworkApp($scope, $location, userProfileService, notificationService) {
 
         $scope.editProfile = function (user) {
-            //user.profileImageData = 'fdsfsdfadfsad';
-            //user.coverImageData = 'fsdafasdfasdf';
             user.gender = 'Male';
 
             userProfileService.editUserProfile(user)
                 .then(function () {
-                    alert('Profile edited successfully!');
-
+                    notificationService.success("Success", "Profile successfully edited.");
                         userProfileService.getMyProfileData()
                             .then(function (userData) {
                                 sessionStorage['userData'] = JSON.stringify(userData);
@@ -19,6 +16,7 @@ socialNetworkApp.controller('editProfileController',
 
                     $location.path('/');
                 }, function error(error) {
+                    notificationService.error("Error", "Failed to edit profile!");
                     console.log(error);
                 })
         };

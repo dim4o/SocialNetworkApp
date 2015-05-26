@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css"/>
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="css/flatly.css"/>
+    <link rel="stylesheet" href="css/toaster.min.css"/>
+    <!--<link rel="stylesheet" href="css/angular-notify.css"/>-->
     <link rel="stylesheet" href="css/app.css"/>
     <title>Social Network</title>
 </head>
@@ -18,11 +20,18 @@
 <div id="container" ng-view="socialNetworkApp">
 
 </div>
+<toaster-container toaster-options="{'position-class': 'toast-bottom-full-width'}">
+
+</toaster-container>
 <!--Main content-->
 
 <script src="./lib/angular/angular.js"></script>
+<script src="./lib/angular/angular-animate.min.js"></script>
+<script src="./lib/toaster.min.js"></script>
+
 <script src="./lib/angular/angular-route.js"></script>
-<script src="./lib/angular-bootstrap/dist/ui-bootstrap.js"></script>
+
+<!--<script src="./lib/angular/angular-sanitize.min.js"></script>-->
 <!--<script src="./lib/liveSearch.js"></script>-->
 <!--<script src="js/services/authorizationService.js"></script>-->
 <script src="./js/app.js"></script>
@@ -31,6 +40,7 @@
 <script src="./js/directives/readProfileImage.js"></script>
 <script src="./js/directives/readCoverImage.js"></script>
 
+<script src="./js/services/notificationService.js"></script>
 <script src="./js/controllers/readerController.js"></script>
 <script src="./js/controllers/registerController.js"></script>
 <script src="./js/controllers/loginController.js"></script>

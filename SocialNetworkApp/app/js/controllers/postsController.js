@@ -1,5 +1,5 @@
 socialNetworkApp.controller('postsController',
-    function postController($scope, userData, $routeParams) {
+    function postController($scope, userData, $routeParams, toaster) {
         $scope.limit = 1000;
 
         $scope.likePost = function (feed) {
@@ -8,6 +8,7 @@ socialNetworkApp.controller('postsController',
                     console.log("Liked");
                     feed.likesCount++;
                     feed.liked = true;
+
                     console.log(feed.id);
                 }, function (error) {
                     console.log(error);
@@ -69,7 +70,8 @@ socialNetworkApp.controller('postsController',
                     $scope.postsData[i]['comments'] = allCommentsData;
                     $scope.allPostComments.forEach(function (comment) {
                         console.log(comment.commentContent);
-                    })
+                    });
+
                 }, function (error) {
                     console.log(error);
                 });

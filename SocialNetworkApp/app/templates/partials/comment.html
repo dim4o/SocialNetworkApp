@@ -3,11 +3,12 @@
     <div class="panel-heading">
         <div class="row">
             <div class="comment-profile-image col-md-4">
-                <img ng-src="{{comment.author.profileImageData}}" alt=""/>
+                <img ng-src="{{comment.author.profileImageData}}" alt="{{comment.author.name}}"/>
             </div>
             <div class="col-md-8">
                 <span ng-init="showDiv = false;"
-                      ng-click="popupPersonPreview(comment.author.username, $index);showDiv = true;"><strong>{{comment.author.name}}</strong></span>
+                      ng-click="popupPersonPreview(comment.author.username, $index);showDiv = true;">
+                    <strong>{{comment.author.name}}</strong></span>
                 <span>{{comment.date | date:'d MMM yyyy HH:mm:ss'}}</span>
 
                 <div ng-mouseleave="showDiv = false;" ng-show="showDiv" class="popupPreview">

@@ -1,4 +1,4 @@
-var socialNetworkApp = angular.module('socialNetworkApp',['ngRoute']);//'ui.bootstrap', 'mgcrea.ngStrap', 'LiveSearch'
+var socialNetworkApp = angular.module('socialNetworkApp',['ngRoute', 'toaster']);//'ui.bootstrap', 'mgcrea.ngStrap', 'LiveSearch'
 
 socialNetworkApp.config(['$routeProvider',
     function ($routeProvider) {

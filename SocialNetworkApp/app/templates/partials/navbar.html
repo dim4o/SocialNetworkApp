@@ -17,7 +17,7 @@
 <!--guest navigation-->
 
 <!--user navigation-->
-<div class="container-fluid" ng-if="isLogged">
+<div class="container-fluid" ng-if="isLogged" ng-init="intervalFunction()">
     <div class="navbar-header">
         <a href="#/" class="navbar-brand">Social Network</a>
     </div>

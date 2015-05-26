@@ -11,7 +11,7 @@ socialNetworkApp.controller('friendsController',
                         for (var i = 0; i < ownFriendsPreviewData.friends.length; i++) {
                             if (!ownFriendsPreviewData.friends[i].profileImageData) {
                                 ownFriendsPreviewData.friends[i]
-                                    .profileImageData = './img/defaultProfileImage.png';
+                                    .profileImageData = './img/defaultProfileImagePreview.png';
                             }
                         }
                         $scope.friendsPreviewList = ownFriendsPreviewData;

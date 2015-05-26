@@ -2,33 +2,19 @@
     "use strict";
 
     socialNetworkApp.controller('loginController',
-        function loginController($scope, $location, userData, userProfileService, authorizationService) {
+        function loginController($scope, $location, userData, userProfileService,
+                                 authorizationService, notificationService) {
             $scope.login = function (user) {
-                //alert(user.username);
                 userData.login(user)
                     .then(function (data) {
-                        sessionStorage.setItem('username', user.username);
-                        //alert(sessionStorage['username']);
+                        sessionStorage.setItem('username', data.userName);
                         authorizationService.setAccessToken(data);
-                        //userProfileService.getMyProfileData()
-                        //    .then(function (data) {
-                        //        sessionStorage['userData'] = JSON.stringify(data);
-                        //        //loadData();
-                        //    }, function (error) {
-                        //
-                        //    });
+                        notificationService.success("Welcome " + data.userName, "Login successful");
                         $location.path('/');
-
                     }, function (error) {
                         console.log(error);
                     })
             };
-            //var loadData = function loadData() {
-            //    if (sessionStorage['userData']) {
-            //        $scope.profileImage = 'data:image/jpeg;base64,'
-            //            + JSON.parse(sessionStorage['userData'])['profileImageData'];
-            //    }
-            //}
         });
 }());
 
