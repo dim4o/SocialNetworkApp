@@ -7,9 +7,9 @@
 
      <div ng-controller="friendsController" ng-init="loadFriendsList()">
           <div ng-repeat="friend in detailedFriendsList | filter: friend">
-               <div class="col-md-2 ownFriendsImages">
+               <div class="col-md-2 ownFriendsImages" background-directive = "../img/defaultProfileImagePreview.png">
                     <a href="#/users/{{friend.username}}">
-                         <img ng-src="{{friend.profileImageData}}" alt="" class="thumbnail"/>
+                         <img ng-src="{{friend.profileImageData || './img/defaultProfileImagePreview.png'}}" alt="" class="thumbnail"/>
                          <span>{{friend.name}}</span>
                     </a>
                </div>

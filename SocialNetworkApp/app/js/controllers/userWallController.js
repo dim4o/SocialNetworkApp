@@ -1,8 +1,6 @@
 socialNetworkApp.controller('userWallController',
     function ($scope, userData, $routeParams) {
         //$scope.userWallData = {};
-        //$scope.getFriendWallByPages = function (username) {
-        //    console.log('AAAAAAAAA');
 
         $scope.currUserUsername = $routeParams.username;
 
@@ -23,20 +21,6 @@ socialNetworkApp.controller('userWallController',
         //    });
 
         //};
-        //$scope.addNewPost = function (content) {
-        //    userData.addNewPost($scope.currentUsername, content)
-        //        .then(function (post) {
-        //            alert('Successfully posted');
-        //            //console.log(post);
-        //            //console.log($scope.currentUsername);
-        //            //console.log(content);
-        //            $scope.postsData.unshift(post);
-        //            //console.log($scope.userWallData);
-        //        }, function (error) {
-        //            console.log(error);
-        //        });
-        //};
-
         userData.getUserFullData($routeParams.username)
             .then(function (userFullData) {
                 $scope.currUserUsername = null;

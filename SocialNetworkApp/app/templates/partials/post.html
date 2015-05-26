@@ -8,8 +8,8 @@
             <div class="post-details col-md-8">
                 <span ng-init="showDiv = false;"
                       ng-click="popupPersonPreview(post.author.username, $index);showDiv = true;">
-                    <strong style="background: red">{{post.author.name}}</strong> to {{post.wallOwner.name}}
-                </span><br/>
+                    <strong><a href="">{{post.author.name}}</a></strong>
+                </span> to <strong>{{post.wallOwner.name}}</strong><br/>
                 <span>{{post.date | date : 'd MMM yyyy, HH:mm:ss'}}</span>
 
                 <div ng-mouseleave="showDiv = false;" ng-show="showDiv" class="popupPreview">
@@ -57,7 +57,7 @@
 
         <!---->
         <a ng-click="showCommentArea = true;" ng-init="showCommentArea = false;">
-            <button ng-if="post.author.isFriend || userFullData.isFriend || (post.author.username == myUsername())"
+            <button ng-if="isMyOwnWall() || post.author.isFriend || userFullData.isFriend || (post.author.username == myUsername())"
                     ng-disabled="showCommentArea" class="btn btn-primary btn-xs">
                 Comment
             </button>

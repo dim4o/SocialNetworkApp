@@ -8,7 +8,7 @@
             <div class="col-md-8">
                 <span ng-init="showDiv = false;"
                       ng-click="popupPersonPreview(comment.author.username, $index);showDiv = true;">
-                    <strong>{{comment.author.name}}</strong></span>
+                    <strong><a href="">{{comment.author.name}}</a></strong></span>
                 <span>{{comment.date | date:'d MMM yyyy HH:mm:ss'}}</span>
 
                 <div ng-mouseleave="showDiv = false;" ng-show="showDiv" class="popupPreview">
@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-    <div class="panel-body">
+    <div class="panel-body" ng-show="!showEditArea">
         {{comment.commentContent}}<br/>
     </div>
     {{showEditDialog}}

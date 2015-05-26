@@ -4,6 +4,14 @@
 .text-area {
 
 }
+
+.ng-dirty.ng-invalid.form-control:focus {
+	border: 2px solid rgba(201, 49, 0, 0.78);
+}
+
+.ng-dirty.ng-valid.form-control:focus {
+	border: 2px solid  rgba(120, 204, 74, 0.52);
+}
 .col-centered{
 	float: none;
 	/*display: inline-block;*/
@@ -90,11 +98,12 @@
 }
 
 .ownFriendsImages {
-	display: inline-block;
+	/*display: inline-block;*/
 	/*border: 1px solid rgba(81, 81, 81, 1);*/
 	padding: 0;
 	width: 100px;
 	height: 100px;
+	/*background: url("../img/defaultProfileImagePreview.png");*/
 	/*margin: 0 0 -35px 0;*/
 
 }
@@ -103,18 +112,20 @@
 	float: left;
 	/*border: 1px solid;*/
 	width: 100%;
-	padding: 5px;
+	padding: 2px;
 	background: rgba(51, 51, 51, 0.76);
 	color:  white;
 	vertical-align: bottom;
 	height: 35px;
 	top: -35px;
+	font-size: 12px;
 }
 .ownFriendsImages img, .thumbnail-box {
 	width: 100%;
 	/*height: 120px;*/
 	padding: 0;
 	margin: 0;
+	/*content:url("../img/defaultProfileImagePreview.png");*/
 }
 
 /*legend {*/
