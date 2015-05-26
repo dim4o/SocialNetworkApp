@@ -7,6 +7,7 @@ socialNetworkApp.controller('changePasswordController',
                     notificationService.success("Success", "Password changed successful");
                     $location.path('/');
                 }, function error(error) {
+                    notificationService.error("Error", "Failed to change password!");
                     console.log(error);
                 })
         };

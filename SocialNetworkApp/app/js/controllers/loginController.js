@@ -12,6 +12,7 @@
                         notificationService.success("Welcome " + data.userName, "Login successful");
                         $location.path('/');
                     }, function (error) {
+                        notificationService.error("Error", "Failed to login! Please try again later.");
                         console.log(error);
                     })
             };

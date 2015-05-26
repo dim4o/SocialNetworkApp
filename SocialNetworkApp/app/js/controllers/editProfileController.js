@@ -7,18 +7,29 @@ socialNetworkApp.controller('editProfileController',
             userProfileService.editUserProfile(user)
                 .then(function () {
                     notificationService.success("Success", "Profile successfully edited.");
-                        userProfileService.getMyProfileData()
-                            .then(function (userData) {
-                                sessionStorage['userData'] = JSON.stringify(userData);
-                            }, function (error) {
-                                console.log(error);
-                            });
+                        //userProfileService.getMyProfileData()
+                        //    .then(function (userData) {
+                        //        sessionStorage['userData'] = JSON.stringify(userData);
+                        //        $location.path('/');
+                        //    }, function (error) {
+                        //        console.log(error);
+                        //    });
 
-                    $location.path('/');
+                    //$location.path('/');
                 }, function error(error) {
                     notificationService.error("Error", "Failed to edit profile!");
                     console.log(error);
                 })
+                .then(function () {
+                    userProfileService.getMyProfileData()
+                        .then(function (userData) {
+                            sessionStorage['userData'] = JSON.stringify(userData);
+                            $location.path('/');
+                        }, function (error) {
+                            notificationService.error("Error", "Cannot load your profile data.");
+                            console.log(error);
+                        });
+                });
         };
 
         $scope.isEmptyImage = function (image) {

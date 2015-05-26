@@ -107,11 +107,11 @@
                 'posts/' + postId + '/comments/' + commentId, null);
         };
 
-        //var editComment = function (postId, commentId, comment) {
-        //    var data = {commentContent: comment};
-        //    return userDataRequester('PUT', baseServiceUrl +
-        //        'posts/' + postId + '/comments/' + commentId, comment);
-        //};
+        var editComment = function (postId, commentId, comment) {
+            var data = {commentContent: comment};
+            return userDataRequester('PUT', baseServiceUrl +
+                'posts/' + postId + '/comments/' + commentId, data);
+        };
 
         var getFriendWallByPages = function (username) {
             return userDataRequester('GET', baseServiceUrl +
@@ -173,7 +173,7 @@
             getPostComments: getPostComments,
             addCommentToPost: addCommentToPost,
             deleteComment: deleteComment,
-            //editComment: editComment,
+            editComment: editComment,
             getFriendWallByPages: getFriendWallByPages,
             addNewPost: addNewPost,
             deletePost: deletePost,

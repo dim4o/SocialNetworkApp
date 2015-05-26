@@ -20,6 +20,19 @@
     <div class="panel-body">
         {{comment.commentContent}}<br/>
     </div>
+    {{showEditDialog}}
+    <div class="panel-body" ng-show="showEditArea">
+
+        <textarea class="form-control" ng-model="content" ng-init="content = comment.commentContent" >
+            {{content}}
+        </textarea>
+
+        <button class="btn btn-primary btn-xs"
+                ng-click="editComment(post.id, comment.id, parentIndex, $index, content); showEditArea = false;">
+            Save
+        </button>
+        <button class="btn btn-primary btn-xs" ng-click="showEditArea = false;">Cancel</button>
+    </div>
     <div class="panel-heading">
 
         <span ng-if="isMyOwnWall() || userFullData.isFriend || comment.author.isFriend">
@@ -39,10 +52,27 @@
                 Delete {{parentIndex}} - {{$index}}
             </button>
         </a>
-        <a ng-if="comment.author.username == myUsername()" ng-click="editComment(post.id, comment.id, $index)">
-            <button class="btn btn-primary btn-xs">Edit</button>
+
+        <a ng-if="comment.author.username == myUsername()" >
+            <a ng-click="showEditArea = true" ng-init="showEditArea = false;">
+                <button class="btn btn-primary btn-xs" ng-disabled="showEditArea">
+                    Edit-{{showEditDialog}}
+                </button>
+            </a>
         </a>
         <div class="clearfix"></div>
+
+        <!--<div class="panel-body" ng-show="showEditArea">-->
+
+            <!--<textarea ng-model="editedComment" class="form-control">{{comment.commentContent}}-->
+            <!--</textarea>-->
+
+            <!--<button class="btn btn-primary btn-xs"-->
+                    <!--ng-click="editComment(post.id, comment.id, parentIndex, $index, 'new comment111')">-->
+                <!--Save-->
+            <!--</button>-->
+            <!--<button class="btn btn-primary btn-xs" ng-click="showEditArea = false;">Cancel</button>-->
+        <!--</div>-->
         <!--{{comment}}-->
     </div>
 </div>

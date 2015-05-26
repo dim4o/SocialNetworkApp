@@ -23,19 +23,19 @@ socialNetworkApp.controller('userWallController',
         //    });
 
         //};
-        $scope.addNewPost = function (content) {
-            userData.addNewPost($scope.currentUsername, content)
-                .then(function (post) {
-                    alert('Successfully posted');
-                    //console.log(post);
-                    //console.log($scope.currentUsername);
-                    //console.log(content);
-                    $scope.postsData.unshift(post);
-                    //console.log($scope.userWallData);
-                }, function (error) {
-                    console.log(error);
-                });
-        };
+        //$scope.addNewPost = function (content) {
+        //    userData.addNewPost($scope.currentUsername, content)
+        //        .then(function (post) {
+        //            alert('Successfully posted');
+        //            //console.log(post);
+        //            //console.log($scope.currentUsername);
+        //            //console.log(content);
+        //            $scope.postsData.unshift(post);
+        //            //console.log($scope.userWallData);
+        //        }, function (error) {
+        //            console.log(error);
+        //        });
+        //};
 
         userData.getUserFullData($routeParams.username)
             .then(function (userFullData) {

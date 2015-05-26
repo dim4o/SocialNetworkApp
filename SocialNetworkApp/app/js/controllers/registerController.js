@@ -14,7 +14,7 @@
                                 sessionStorage['userData'] = JSON.stringify(data);
                                 //loadData();
                             }, function (error) {
-
+                                notificationService.error("Error", "Failed to register!");
                             });
                         $location.path('/');
                 }, function (response) {

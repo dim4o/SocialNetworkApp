@@ -1,7 +1,8 @@
 socialNetworkApp.controller('postsController',
-    function postController($scope, userData, $routeParams, toaster) {
+    function postController($scope, userData, $routeParams, notificationService) {
         $scope.limit = 1000;
-
+        //$scope.showEditDialog = false;
+        //$scope.showEditArea = false;
         $scope.likePost = function (feed) {
             userData.likePost(feed.id)
                 .then(function () {
@@ -77,19 +78,45 @@ socialNetworkApp.controller('postsController',
                 });
         };
 
+        $scope.addNewPost = function (content) {
+            userData.addNewPost($scope.currentUsername, content)
+                .then(function (post) {
+                    notificationService.success('Success', 'Post successfully added.');
+                    $scope.postsData.unshift(post);
+                }, function (error) {
+                    notificationService.error('Error', 'Failed to add post.');
+                    console.log(error);
+                });
+        };
+
         $scope.showLessComments = function () {
             $scope.limit = 3;
             alert('Less');
         };
 
         $scope.addCommentToPost = function (feed, i, comment) {
-            console.log(comment);
             userData.addCommentToPost(feed.id, comment)
                 .then(function (commentData) {
+                    console.log(commentData);
                     $scope.postsData[i]['comments'].unshift(commentData);
-                    console.log(comment);
+                    notificationService.success('Success', 'Comment successfully added.');
+                }, function (error) {
+                    notificationService.success('Error', 'Failed to add comment.');
+                    console.log(error);
+                });
+        };
+
+        $scope.editComment = function (postId, commentId, postIndex, commentIndex, comment) {
+            console.log(postId);
+            console.log(commentId);
+            userData.editComment(postId, commentId, comment)
+                .then(function (commentData) {
+                    console.log(commentData);
+                    $scope.postsData[postIndex]['comments'][commentIndex].commentContent = comment;
+                    notificationService.success('Success', 'Comment successfully edited.');
                 }, function (error) {
                     console.log(error);
+                    notificationService.error('Error', 'Failed to edit comment.');
                 });
         };
 
@@ -99,7 +126,9 @@ socialNetworkApp.controller('postsController',
             userData.deleteComment(postId, commentId)
                 .then(function () {
                     $scope.postsData[postIndex]['comments'].splice(commentIndex, 1);
+                    notificationService.success('Success', 'Comment successfully deleted.');
                 }, function (error) {
+                    notificationService.error('Error', 'Failed to delete comment.')
                     console.log(error);
                 });
         };
@@ -108,7 +137,9 @@ socialNetworkApp.controller('postsController',
             userData.deletePost(post.id)
                 .then(function () {
                     $scope.postsData.splice(i, 1);
+                    notificationService.success('Success', 'Post successfully deleted.');
                 }, function (error) {
+                    notificationService.error('Error', 'Failed to delete post.')
                     console.log(error);
                 });
         };
@@ -117,16 +148,7 @@ socialNetworkApp.controller('postsController',
         //    $('[data-toggle="popover"]').popover();
         //});
 
-        $scope.editComment = function (postId, commentId, comment, i) {
-            console.log(postId);
-            console.log(commentId);
-            userData.editComment(postId, commentId, comment)
-                .then(function () {
-                    $scope.postsData[i]['comments'].splice(i, 1);
-                }, function (error) {
-                    console.log(error);
-                });
-        };
+
 
         $scope.isMyOwnWall = function () {
             return !$routeParams.username;
@@ -134,9 +156,14 @@ socialNetworkApp.controller('postsController',
 
         $scope.myUsername = function () {
             return sessionStorage['username'];
-        }
+        };
 
         $scope.toLocalTimeZone = function(item){
             item.date = new Date(item.date);
         };
+
+        $scope.click = function () {
+            alert('AAAAAAa');
+        };
+
     });
