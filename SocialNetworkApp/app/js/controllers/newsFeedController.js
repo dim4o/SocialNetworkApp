@@ -5,7 +5,7 @@ socialNetworkApp.controller('userHomeController',
 
         $scope.currUserUsername = sessionStorage['username'];
 
-        userData.getNewsFeedsPages()
+        userData.getNewsFeedsPages('', 10)
             .then(function (newsFeedsData) {
                 $scope.postsData = newsFeedsData;
                 $scope.limit = 1000;

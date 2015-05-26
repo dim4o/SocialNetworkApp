@@ -54,8 +54,12 @@
             return userDataRequester('GET', baseServiceUrl + 'me/friends', null)
         };
 
-        var getNewsFeedsPages = function () {
-            return userDataRequester('GET', baseServiceUrl + 'me/feed?StartPostId=&PageSize=10', null)
+        var getNewsFeedsPages = function (startPostId, pageSize) {
+            if (!startPostId) {
+                startPostId = '';
+            }
+            return userDataRequester('GET', baseServiceUrl +
+                'me/feed?StartPostId=' + startPostId + '&PageSize=' + pageSize, null)
         };
 
         var likePost = function (postId) {
