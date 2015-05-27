@@ -1,11 +1,11 @@
 socialNetworkApp.controller('searchController',
-    function searchController($scope, userData) {
+    function searchController($scope, usersService) {
         $scope.users = {};
 
         $scope.search = function search(name) {
             //alert('Cliced');
             if (name !== "") {
-                userData.searchUserByName(name)
+                usersService.searchUserByName(name)
                     .then(function (users) {
                         $scope.users = users;
                         users.forEach(function (user) {

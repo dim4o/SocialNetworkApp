@@ -1,7 +1,7 @@
 socialNetworkApp.controller('navigationController',
     function navigationController($scope, $location, $routeParams, $timeout,
                                   authorizationService, userProfileService, usSpinnerService) {
-
+        console.log('Navigation Controller Initialization');
         usSpinnerService.stop('spinner-1');
 
         $scope.isLogged = authorizationService.isLogged();

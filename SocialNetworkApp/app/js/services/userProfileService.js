@@ -3,7 +3,7 @@ socialNetworkApp.factory('userProfileService',
 
         var serviceUrl = baseServiceUrl + 'users/';
 
-        function userProfileRequester(method, url, data) {
+        function userDataRequester(method, url, data) {
             var deferred = $q.defer();
             var headers = {
                 Authorization: 'Bearer ' + authorizationService.getAccessToken()
@@ -27,24 +27,64 @@ socialNetworkApp.factory('userProfileService',
 
         var getFullUserProfile = function () {
             var userName = authorizationService.getUsername();
-            return userProfileRequester('GET', serviceUrl + userName, null);
+            return userDataRequester('GET', serviceUrl + userName, null);
         };
 
         var getPreviewUserProfile = function () {
             var userName = authorizationService.getUsername();
-            return userProfileRequester('GET', serviceUrl + userName + '/preview', null);
+            return userDataRequester('GET', serviceUrl + userName + '/preview', null);
         };
 
         var editUserProfile = function (data) {
-            return userProfileRequester('PUT', baseServiceUrl + 'me', data);
+            return userDataRequester('PUT', baseServiceUrl + 'me', data);
         };
 
         var getMyProfileData = function () {
-            return userProfileRequester('GET', baseServiceUrl + 'me', null);
+            return userDataRequester('GET', baseServiceUrl + 'me', null);
         };
 
         var changeProfilePassword = function (data) {
-            return userProfileRequester('PUT', baseServiceUrl + 'me/changepassword', data);
+            return userDataRequester('PUT', baseServiceUrl + 'me/changepassword', data);
+        };
+
+        var getFriendRequests = function () {
+            return userDataRequester('GET', baseServiceUrl + 'me/requests', null)
+        };
+
+        var approveFriendRequest = function (requestId) {
+            return userDataRequester('PUT', baseServiceUrl
+                + 'me/requests/' + requestId + '?status=approved')
+        };
+
+        var rejectFriendRequest = function (requestId) {
+            return userDataRequester('PUT', baseServiceUrl
+                + 'me/requests/' + requestId + '?status=rejected')
+        };
+
+        var sendFriendRequest = function (username) {
+            return userDataRequester('POST', baseServiceUrl + 'me/requests/' + username, null)
+        };
+
+        var getMyFriendsPreview = function () {
+            return userDataRequester('GET', baseServiceUrl + 'me/friends/preview', null)
+        };
+
+
+        var getUserPreviewData = function (username) {
+            return userDataRequester('GET', baseServiceUrl + 'users/' + username +
+                '/preview', null)
+        };
+
+        var getNewsFeedsPages = function (startPostId, pageSize) {
+            if (!startPostId) {
+                startPostId = '';
+            }
+            return userDataRequester('GET', baseServiceUrl +
+                'me/feed?StartPostId=' + startPostId + '&PageSize=' + pageSize, null)
+        };
+
+        var getOwnFriends = function () {
+            return userDataRequester('GET', baseServiceUrl + 'me/friends', null)
         };
 
         return {
@@ -52,6 +92,14 @@ socialNetworkApp.factory('userProfileService',
             getPreviewUserProfile: getPreviewUserProfile,
             getMyProfileData: getMyProfileData,
             editUserProfile: editUserProfile,
-            changeProfilePassword: changeProfilePassword
+            changeProfilePassword: changeProfilePassword,
+            getFriendRequests: getFriendRequests,
+            approveFriendRequest: approveFriendRequest,
+            rejectFriendRequest: rejectFriendRequest,
+            sendFriendRequest: sendFriendRequest,
+            getUserPreviewData: getUserPreviewData,
+            getMyFriendsPreview: getMyFriendsPreview,
+            getNewsFeedsPages: getNewsFeedsPages,
+            getOwnFriends: getOwnFriends
         }
 });

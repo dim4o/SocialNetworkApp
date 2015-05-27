@@ -46,7 +46,7 @@
 
         <span class="pull-right">Likes:<span class="badge">{{comment.likesCount}}</span></span>
 
-        <a ng-if="isMyOwnWall() || (post.author.username == myUsername())"
+        <a ng-if="isMyOwnWall() || (comment.author.username == myUsername())"
            ng-click="deleteComment(post.id, comment.id, parentIndex, $index)">
             <button class="btn btn-primary btn-xs">
                 Delete {{parentIndex}} - {{$index}}

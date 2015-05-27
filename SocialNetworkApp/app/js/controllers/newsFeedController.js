@@ -1,6 +1,6 @@
 socialNetworkApp.controller('userHomeController',
-    function userHomeController($scope, userData, usSpinnerService) {
-
+    function userHomeController($scope, userProfileService, usersService, notificationService, usSpinnerService) {
+        console.log('News and Feeds Controller Initialization');
         //$scope.myFriendsData = {};
         usSpinnerService.stop('spinner-1');
         $scope.currUserUsername = sessionStorage['username'];
@@ -18,7 +18,7 @@ socialNetworkApp.controller('userHomeController',
             $scope.showPopup = true;
             $scope.userData = {};
             $scope.userData.profileImageData = './img/defaultProfileImage.png';
-            userData.getUserPreviewData(username)
+            usersService.getUserPreviewData(username)
                 .then(function (userData) {
                     $scope.userData = userData;
                     console.log(userData);
@@ -33,11 +33,12 @@ socialNetworkApp.controller('userHomeController',
 
         $scope.pending = false;
         $scope.sendFriendRequest = function (username) {
-            userData.sendFriendRequest(username)
+            userProfileService.sendFriendRequest(username)
                 .then(function (success) {
-                    alert('Friend request sent !');
+                    notificationService.success("Success", "Friend request is sent.");
                     $scope.pending = true;
                 }, function (error) {
+                    notificationService.error("Error", "The request can not be sent;");
                     console.log(error);
                 })
         };

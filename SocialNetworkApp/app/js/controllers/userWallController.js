@@ -1,10 +1,10 @@
 socialNetworkApp.controller('userWallController',
-    function ($scope, userData, $routeParams) {
+    function ($scope, usersService, $routeParams) {
         //$scope.userWallData = {};
 
         $scope.currUserUsername = $routeParams.username;
 
-        userData.getFriendWallByPages($routeParams.username)
+        usersService.getFriendWallByPages($routeParams.username)
                 .then(function (userWallDataInfo) {
                     $scope.postsData = userWallDataInfo;
                     console.log($scope.postsData);
@@ -21,7 +21,7 @@ socialNetworkApp.controller('userWallController',
         //    });
 
         //};
-        userData.getUserFullData($routeParams.username)
+        usersService.getUserFullData($routeParams.username)
             .then(function (userFullData) {
                 $scope.currUserUsername = null;
                 $scope.userFullData = userFullData;
@@ -35,7 +35,7 @@ socialNetworkApp.controller('userWallController',
             $scope.showPopup = true;
             $scope.userData = {};
             $scope.userData.profileImageData = './img/defaultProfileImage.png';
-            userData.getUserPreviewData(username)
+            usersService.getUserPreviewData(username)
                 .then(function (userData) {
                     $scope.userData = userData;
                     console.log(userData);

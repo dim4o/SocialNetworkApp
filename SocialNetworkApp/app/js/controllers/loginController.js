@@ -2,7 +2,7 @@
     "use strict";
 
     socialNetworkApp.controller('loginController',
-        function loginController($scope, $location, userData, userProfileService,
+        function loginController($scope, $location, usersService, userProfileService,
                                  authorizationService, notificationService, usSpinnerService) {
 
             //$scope.stopSpin = (function(){
@@ -17,7 +17,7 @@
 
             $scope.login = function (user) {
                 usSpinnerService.spin('spinner-2');
-                userData.login(user)
+                usersService.login(user)
                     .then(function (data) {
                         sessionStorage.setItem('username', data.userName);
                         authorizationService.setAccessToken(data);

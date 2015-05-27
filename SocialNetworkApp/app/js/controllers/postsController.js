@@ -1,10 +1,15 @@
 socialNetworkApp.controller('postsController',
-    function postController($scope, userData, $routeParams, notificationService) {
+    function postController($scope, postsService, $routeParams, notificationService) {
+
+        console.log('Post Controller Initialization');
+
         $scope.limit = 1000;
         //$scope.showEditDialog = false;
         //$scope.showEditArea = false;
+        //$scope.postsData = {};
+
         $scope.likePost = function (feed) {
-            userData.likePost(feed.id)
+            postsService.likePost(feed.id)
                 .then(function () {
                     console.log("Liked");
                     feed.likesCount++;
@@ -17,7 +22,7 @@ socialNetworkApp.controller('postsController',
         };
 
         $scope.unlikePost = function (feed) {
-            userData.unlikePost(feed.id)
+            postsService.unlikePost(feed.id)
                 .then(function () {
                     feed.likesCount--;
                     feed.liked = false;
@@ -27,7 +32,7 @@ socialNetworkApp.controller('postsController',
         };
 
         $scope.likeComment = function (postId, comment) {
-            userData.likeComment(postId, comment.id)
+            postsService.likeComment(postId, comment.id)
                 .then(function () {
                     console.log("Liked");
                     comment.likesCount++;
@@ -39,7 +44,7 @@ socialNetworkApp.controller('postsController',
         };
 
         $scope.unlikeComment = function (postId, comment) {
-            userData.unlikeComment(postId, comment.id)
+            postsService.unlikeComment(postId, comment.id)
                 .then(function () {
                     comment.likesCount--;
                     comment.liked = false;
@@ -61,7 +66,7 @@ socialNetworkApp.controller('postsController',
         $scope.showMoreComments = function (feed, i) {
             console.log(feed.id);
 
-            userData.getPostComments(feed.id)
+            postsService.getPostComments(feed.id)
                 .then(function (allCommentsData) {
                     $scope.allPostComments = [];
                     //$scope.allPostComments = allCommentsData;
@@ -79,7 +84,7 @@ socialNetworkApp.controller('postsController',
         };
 
         $scope.addNewPost = function (content) {
-            userData.addNewPost($scope.currentUsername, content)
+            postsService.addNewPost($scope.currentUsername, content)
                 .then(function (post) {
                     notificationService.success('Success', 'Post successfully added.');
                     $scope.postsData.unshift(post);
@@ -95,7 +100,7 @@ socialNetworkApp.controller('postsController',
         };
 
         $scope.addCommentToPost = function (feed, i, comment) {
-            userData.addCommentToPost(feed.id, comment)
+            postsService.addCommentToPost(feed.id, comment)
                 .then(function (commentData) {
                     console.log(commentData);
                     $scope.postsData[i]['comments'].unshift(commentData);
@@ -109,7 +114,7 @@ socialNetworkApp.controller('postsController',
         $scope.editComment = function (postId, commentId, postIndex, commentIndex, comment) {
             console.log(postId);
             console.log(commentId);
-            userData.editComment(postId, commentId, comment)
+            postsService.editComment(postId, commentId, comment)
                 .then(function (commentData) {
                     console.log(commentData);
                     $scope.postsData[postIndex]['comments'][commentIndex].commentContent = comment;
@@ -123,7 +128,7 @@ socialNetworkApp.controller('postsController',
         $scope.deleteComment = function (postId, commentId, postIndex, commentIndex) {
             console.log(postId);
             console.log(commentId);
-            userData.deleteComment(postId, commentId)
+            postsService.deleteComment(postId, commentId)
                 .then(function () {
                     $scope.postsData[postIndex]['comments'].splice(commentIndex, 1);
                     notificationService.success('Success', 'Comment successfully deleted.');
@@ -134,7 +139,7 @@ socialNetworkApp.controller('postsController',
         };
 
         $scope.deletePost = function (post, i) {
-            userData.deletePost(post.id)
+            postsService.deletePost(post.id)
                 .then(function () {
                     $scope.postsData.splice(i, 1);
                     notificationService.success('Success', 'Post successfully deleted.');

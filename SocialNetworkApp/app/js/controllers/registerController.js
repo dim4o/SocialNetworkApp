@@ -2,10 +2,10 @@
     "use strict";
 
     socialNetworkApp.controller('registerController',
-        function registerController($scope, $location, userData, userProfileService,
+        function registerController($scope, $location, usersService, userProfileService,
                                     authorizationService, notificationService) {
             $scope.register = function (user) {
-                userData.register(user)
+                usersService.register(user)
                     .then(function (data) {
                         authorizationService.setAccessToken(data);
                         userProfileService.getMyProfileData()

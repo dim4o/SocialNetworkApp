@@ -1,9 +1,10 @@
 socialNetworkApp.controller('friendRequestsController',
-    function friendRequestsController($scope, userData) {
+    function friendRequestsController($scope, userProfileService) {
         $scope.friendRequestsData = {};
         //showFriendRequests();
+        // TODO: very similar
         $scope.getNumberOfRequests = function () {
-            userData.getFriendRequests()
+            userProfileService.getFriendRequests()
                 .then(function (friendRequestsData) {
                     $scope.numberOfRequests = friendRequestsData.length;
                 }, function error(error) {
@@ -13,8 +14,9 @@ socialNetworkApp.controller('friendRequestsController',
 
         $scope.getNumberOfRequests();
 
+        // TODO: very similar
         $scope.showFriendRequests = function () {
-            userData.getFriendRequests()
+            userProfileService.getFriendRequests()
                 .then(function (friendRequestsData) {
                     $scope.friendRequestsData = friendRequestsData;
                 }, function error(error) {
@@ -23,7 +25,7 @@ socialNetworkApp.controller('friendRequestsController',
         };
 
         $scope.acceptRequest = function (requestId) {
-            userData.approveFriendRequest(requestId)
+            userProfileService.approveFriendRequest(requestId)
                 .then(function () {
                     $scope.numberOfRequests--;
                     alert('Approved!')

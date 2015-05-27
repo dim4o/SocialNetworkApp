@@ -2,11 +2,11 @@
     "use strict";
 
     socialNetworkApp.controller('logoutController',
-        function logoutController($scope, $location, userData, authorizationService, notificationService) {
+        function logoutController($scope, $location, usersService, authorizationService, notificationService) {
             $scope.logout = function () {
 
                 //alert(user.username);
-                userData.logout()
+                usersService.logout()
                     .then(function (success) {
                         authorizationService.cleanSessionStorage();
                         $scope.isLogged = false;

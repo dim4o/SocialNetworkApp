@@ -1,12 +1,12 @@
 socialNetworkApp.controller('friendsController',
-    function friendsController($scope, $routeParams, userData) {
+    function friendsController($scope, $routeParams, userProfileService, usersService) {
 
         //$scope.ownFriends = {};
 
         $scope.loadFriendsPreview = function () {
             if (!$routeParams.username) {
                 console.log();
-                userData.getMyFriendsPreview()
+                userProfileService.getMyFriendsPreview()
                     .then(function (ownFriendsPreviewData) {
                         for (var i = 0; i < ownFriendsPreviewData.friends.length; i++) {
                             if (!ownFriendsPreviewData.friends[i].profileImageData) {
@@ -20,7 +20,7 @@ socialNetworkApp.controller('friendsController',
                     });
             } else {
                 var friendsUsername = $routeParams.username;
-                userData.getFriendsFriendsPreview(friendsUsername)
+                usersService.getFriendsFriendsPreview(friendsUsername)
                     .then(function (fiendsFriendsData) {
                         console.log(fiendsFriendsData);
                         $scope.friendsPreviewList = fiendsFriendsData; // TODO: za redakciq
@@ -33,14 +33,14 @@ socialNetworkApp.controller('friendsController',
         $scope.loadFriendsList = function () {
             if ($routeParams.username == sessionStorage['username']) {
                 console.log($routeParams.username);
-                userData.getOwnFriends()
+                userProfileService.getOwnFriends()
                     .then(function (ownFriendsData) {
                         $scope.detailedFriendsList = ownFriendsData;
                     }, function (error) {
                         console.log(error);
                     });
             } else {
-                userData.getDetailedFriendsFriendsList($routeParams.username)
+                usersService.getDetailedFriendsFriendsList($routeParams.username)
                     .then(function (detailedFriendsFriendsList) {
                         $scope.detailedFriendsList = detailedFriendsFriendsList;
                     }, function (error) {

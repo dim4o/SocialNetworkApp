@@ -24,7 +24,7 @@ function authorizationService($window) {
     }
 
     function isLogged() {
-        console.log('dasdas');
+        console.log('Call: authService: getAccessToken()');
         return !!getAccessToken();
     }
 

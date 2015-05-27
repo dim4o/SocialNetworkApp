@@ -2,12 +2,12 @@
 <div class="navbar navbar-default" ng-include="'./templates/partials/navbar.html'"
      ng-controller="navigationController"></div>
 
-<div class="row col-md-12" ng-controller="postsController">
+<div class="row col-md-12">
     <div class="col-md-8" >
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-10 col-md-offset-1" ng-controller="paginationController">
             <div class="clearfix"></div>
 
-            <div ng-controller="paginationController" infinite-scroll='loadMore()' infinite-scroll-distance='1'>
+            <div  ng-controller="postsController" infinite-scroll='loadMore()' >
                 <div ng-repeat="post in postsData" ng-init="parentIndex = $index">
                     <div ng-include="'./templates/partials/post.html'"></div>
                 </div>
