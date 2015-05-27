@@ -7,6 +7,7 @@
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="css/flatly.css"/>
     <link rel="stylesheet" href="css/toaster.min.css"/>
+    <link rel="stylesheet" href="css/angular-busy.css"/>
     <!--<link rel="stylesheet" href="css/angular-notify.css"/>-->
     <link rel="stylesheet" href="css/app.css"/>
     <title>Social Network</title>
@@ -23,6 +24,10 @@
 <toaster-container toaster-options="{'position-class': 'toast-bottom-full-width'}">
 
 </toaster-container>
+<!--<div>-->
+    <span class="spinner" us-spinner="{position: bottom}" spinner-key="spinner-1" spinner-start-active="true"></span>
+<!--</div>-->
+
 <!--Main content-->
 
 <script src="./lib/jquery.js"></script>
@@ -32,6 +37,9 @@
 <script src="./lib/infinite-scroll.js"></script>
 
 <script src="./lib/angular/angular-route.js"></script>
+<script src="./lib/angular-busy.js"></script>
+<script src="./lib/spin.js"></script>
+<script src="./lib/angular-spinner.js"></script>
 
 <!--<script src="./lib/angular/angular-sanitize.min.js"></script>-->
 <!--<script src="./lib/liveSearch.js"></script>-->

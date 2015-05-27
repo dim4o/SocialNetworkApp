@@ -1,5 +1,9 @@
 socialNetworkApp.controller('navigationController',
-    function navigationController($scope, $location, $routeParams, $timeout, authorizationService, userProfileService) {
+    function navigationController($scope, $location, $routeParams, $timeout,
+                                  authorizationService, userProfileService, usSpinnerService) {
+
+        usSpinnerService.stop('spinner-1');
+
         $scope.isLogged = authorizationService.isLogged();
 
         if (sessionStorage.getItem('userData')) {

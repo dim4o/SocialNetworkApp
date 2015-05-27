@@ -1,17 +1,17 @@
 socialNetworkApp.controller('userHomeController',
-    function userHomeController($scope, userData) {
+    function userHomeController($scope, userData, usSpinnerService) {
 
         //$scope.myFriendsData = {};
-
+        usSpinnerService.stop('spinner-1');
         $scope.currUserUsername = sessionStorage['username'];
 
-        userData.getNewsFeedsPages('', 10)
-            .then(function (newsFeedsData) {
-                $scope.postsData = newsFeedsData;
-                $scope.limit = 1000;
-            }, function (error) {
-                console.log(error);
-            });
+        //userData.getNewsFeedsPages('', 10)
+        //    .then(function (newsFeedsData) {
+        //        $scope.postsData = newsFeedsData;
+        //        $scope.limit = 1000;
+        //    }, function (error) {
+        //        console.log(error);
+        //    });
 
         // TODO: duplicate method - userWallController
         $scope.popupPersonPreview = function (username) {

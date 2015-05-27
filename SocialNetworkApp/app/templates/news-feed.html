@@ -4,7 +4,7 @@
 
 <div class="row col-md-12" ng-controller="postsController">
     <div class="col-md-8" >
-        <div class="col-md-10 col-md-offset-1" ng-controller="paginationController">
+        <div class="col-md-10 col-md-offset-1">
             <div class="clearfix"></div>
 
             <div ng-controller="paginationController" infinite-scroll='loadMore()' infinite-scroll-distance='1'>
@@ -33,3 +33,6 @@
 
 <div infinite-scroll="myPagingFunction()" infinite-scroll-distance="3"></div>
 <!--width="50px" height="50px"-->
+<!--<div cg-busy="{promise:pro,message:'Loading Your Data'}"></div>-->
+<!--<span us-spinner="{radius:80, width:8, length: 16}" spinner-key="spinner-2" spinner-start-active="true"></span>-->
+

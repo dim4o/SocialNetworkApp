@@ -1,4 +1,5 @@
-var socialNetworkApp = angular.module('socialNetworkApp',['ngRoute', 'toaster', 'infinite-scroll']);//'ui.bootstrap', 'mgcrea.ngStrap', 'LiveSearch'
+var socialNetworkApp = angular.module('socialNetworkApp',
+    ['ngRoute', 'toaster', 'infinite-scroll', 'cgBusy', 'angularSpinner']);//'ui.bootstrap', 'mgcrea.ngStrap', 'LiveSearch'
 
 socialNetworkApp.config(['$routeProvider',
     function ($routeProvider) {
@@ -54,5 +55,17 @@ socialNetworkApp.run(function ($rootScope, $location, authorizationService) {
         }
     });
 });
+
+socialNetworkApp.config(['usSpinnerConfigProvider', function (usSpinnerConfigProvider) {
+    usSpinnerConfigProvider.setDefaults(
+        {
+            color: '#18BC9C',
+            position: 'fixed',
+            length: 0,
+            lines: 7,
+            width: 25,
+            radius: 30
+        });
+}]);
 
 socialNetworkApp.constant('baseServiceUrl',  'http://softuni-social-network.azurewebsites.net/api/');

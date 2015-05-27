@@ -10,9 +10,6 @@
             var headers = {
                 Authorization: 'Bearer ' + authorizationService.getAccessToken()
             };
-            //if () {
-            //
-            //}
 
             $http({
                 method: method,
