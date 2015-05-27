@@ -12,7 +12,7 @@
                 </span> to <strong>{{post.wallOwner.name}}</strong><br/>
                 <span>{{post.date | date : 'd MMM yyyy, HH:mm:ss'}}</span>
 
-                <div ng-mouseleave="showDiv = false;" ng-show="showDiv" class="popupPreview">
+                <div ng-mouseleave="showDiv = false;" ng-show="showDiv" class="popupPreview anim">
                     <div ng-include="'templates/partials/popupUserDetails.html'"></div>
                 </div>
             </div>
@@ -21,6 +21,21 @@
     <div class="panel-body">
         <div class="col-md-12"></div>
         {{post.postContent}} <br/>
+
+        <!-- Edit Area -->
+        <div class="panel-body" ng-show="showEditArea">
+
+        <textarea class="form-control" ng-model="content" ng-init="content = post.postContent" >
+            {{content}}
+        </textarea>
+
+            <button class="btn btn-primary btn-xs"
+                    ng-click="editPost(post.id, parentIndex, content); showEditArea = false;">
+                Save
+            </button>
+            <button class="btn btn-primary btn-xs" ng-click="showEditArea = false;">Cancel</button>
+        </div>
+        <!-- Edit Area -->
     </div>
     <div class="panel-heading">
         <!-- Likes area -->
@@ -77,6 +92,14 @@
             <button ng-if="isMyOwnWall() || (post.author.username == myUsername())" ng-click="deletePost(post, $index)" class="btn btn-primary btn-xs">
                 Delete
             </button>
+        </a>
+
+        <a ng-if="post.author.username == myUsername()" >
+            <a ng-click="showEditArea = true" ng-init="showEditArea = false;">
+                <button class="btn btn-primary btn-xs" ng-disabled="showEditArea">
+                    Edit-{{showEditDialog}}
+                </button>
+            </a>
         </a>
     </div>
 </div>

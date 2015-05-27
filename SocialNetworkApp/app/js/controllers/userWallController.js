@@ -35,6 +35,7 @@ socialNetworkApp.controller('userWallController',
             $scope.showPopup = true;
             $scope.userData = {};
             $scope.userData.profileImageData = './img/defaultProfileImage.png';
+            $(".anim").show(300).delay(900).hide(300);
             usersService.getUserPreviewData(username)
                 .then(function (userData) {
                     $scope.userData = userData;

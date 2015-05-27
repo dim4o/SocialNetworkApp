@@ -38,6 +38,11 @@ function postsService($http, $q, baseServiceUrl, authorizationService) {
         return userDataRequester('DELETE', serviceUrl + postId, null);
     };
 
+    var editPost = function (postId, comment) {
+        var data = {postContent: comment};
+        return userDataRequester('PUT', serviceUrl + postId, data);
+    };
+
     var likePost = function (postId) {
         return userDataRequester('POST', serviceUrl + postId + '/likes', null);
     };
@@ -99,6 +104,7 @@ function postsService($http, $q, baseServiceUrl, authorizationService) {
         unlikeComment: unlikeComment,
         getPostComments: getPostComments,
         getPostPreviewLikes: getPostPreviewLikes,
-        getCommentPreviewLikes: getCommentPreviewLikes
+        getCommentPreviewLikes: getCommentPreviewLikes,
+        editPost: editPost
     }
 }

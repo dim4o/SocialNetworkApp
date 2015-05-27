@@ -153,6 +153,17 @@ socialNetworkApp.controller('postsController',
                 });
         };
 
+        $scope.editPost = function (postId, postIndex, content) {
+            postsService.editPost(postId, content)
+                .then(function (success) {
+                    $scope.postsData[postIndex].postContent = content;
+                    notificationService.success('Success', 'Post successfully edited.');
+                }, function (error) {
+                    notificationService.error('Error', 'Failed to edit post.');
+                    console.log(error);
+                });
+        };
+
 
 
         $scope.getPostPreviewLikes = function (postId) {

@@ -21,6 +21,7 @@
         {{comment.commentContent}}<br/>
     </div>
     {{showEditDialog}}
+    <!-- Edit Area -->
     <div class="panel-body" ng-show="showEditArea">
 
         <textarea class="form-control" ng-model="content" ng-init="content = comment.commentContent" >
@@ -33,6 +34,7 @@
         </button>
         <button class="btn btn-primary btn-xs" ng-click="showEditArea = false;">Cancel</button>
     </div>
+    <!-- Edit Area -->
     <div class="panel-heading">
 
         <span ng-if="isMyOwnWall() || userFullData.isFriend || comment.author.isFriend">
