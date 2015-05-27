@@ -24,7 +24,14 @@
     </div>
     <div class="panel-heading">
         <span class="pull-right">
-            Likes: <span class="badge">{{post.likesCount}}</span>
+            Likes:
+            <span ng-click="getPostPreviewLikes(post.id); showLikesPreview = true;" class="badge">
+                {{post.likesCount}}
+            </span>
+            <span ng-init="showLikesPreview = false" ng-show="showLikesPreview"
+                  ng-mouseleave="showLikesPreview = false;">
+                <span ng-include="'./templates/partials/popupLikesPreview.html'"></span>
+            </span>
         </span>
         <span class="pull-right">
             Comments: <span class="badge">{{post.totalCommentsCount}}</span>

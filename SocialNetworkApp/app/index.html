@@ -2,56 +2,55 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css"/>
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="css/flatly.css"/>
     <link rel="stylesheet" href="css/toaster.min.css"/>
     <link rel="stylesheet" href="css/angular-busy.css"/>
-    <!--<link rel="stylesheet" href="css/angular-notify.css"/>-->
     <link rel="stylesheet" href="css/app.css"/>
     <title>Social Network</title>
 </head>
 <body ng-app="socialNetworkApp">
 
-<!--<div class="navbar navbar-default" ng-include="'./templates/navbar.html'" ng-controller="navigationController">-->
-
-<!--</div>-->
+<!-- Main content -->
+<div id="container" ng-view="socialNetworkApp"></div>
 <!--Main content-->
-<div id="container" ng-view="socialNetworkApp">
 
-</div>
+<!-- Notifications box -->
 <toaster-container toaster-options="{'position-class': 'toast-bottom-full-width'}">
-
 </toaster-container>
-<!--<div>-->
-    <span class="spinner" us-spinner="{position: bottom}" spinner-key="spinner-1" spinner-start-active="true"></span>
-<!--</div>-->
+<!-- Notifications box -->
 
-<!--Main content-->
+<!-- Loader indicator -->
+<span class="spinner" us-spinner="{position: bottom}" spinner-key="spinner-1" spinner-start-active="true"></span>
+<!-- Loader indicator -->
 
+<!-- Libraries -->
 <script src="./lib/jquery.js"></script>
 <script src="./lib/angular/angular.js"></script>
 <script src="./lib/angular/angular-animate.min.js"></script>
 <script src="./lib/toaster.min.js"></script>
 <script src="./lib/infinite-scroll.js"></script>
-
 <script src="./lib/angular/angular-route.js"></script>
 <script src="./lib/angular-busy.js"></script>
 <script src="./lib/spin.js"></script>
 <script src="./lib/angular-spinner.js"></script>
+<!-- Libraries -->
 
-<!--<script src="./lib/angular/angular-sanitize.min.js"></script>-->
-<!--<script src="./lib/liveSearch.js"></script>-->
-<!--<script src="js/services/authorizationService.js"></script>-->
 <script src="./js/app.js"></script>
 
+<!--Filters-->
 <script src="./js/filters/genderFilter.js"></script>
+<!-- Filters -->
+
+<!-- Directives -->
 <script src="./js/directives/readProfileImage.js"></script>
 <script src="./js/directives/readCoverImage.js"></script>
 <script src="./js/directives/validateEmailDirective.js"></script>
 <script src="./js/directives/backgroundDirective.js"></script>
-<script src="./js/services/notificationService.js"></script>
+<!-- Directives -->
+
+<!-- Controllers -->
 <script src="./js/controllers/readerController.js"></script>
 <script src="./js/controllers/registerController.js"></script>
 <script src="./js/controllers/loginController.js"></script>
@@ -63,15 +62,17 @@
 <script src="./js/controllers/newsFeedController.js"></script>
 <script src="./js/controllers/friendRequestsController.js"></script>
 <script src="./js/controllers/navigationController.js"></script>
-
 <script src="./js/controllers/userWallController.js"></script>
 <script src="./js/controllers/friendsController.js"></script>
 <script src="./js/controllers/paginationController.js"></script>
+<!-- Controllers -->
 
+<!-- Services -->
+<script src="./js/services/notificationService.js"></script>
 <script src="js/services/authorizationService.js"></script>
 <script src="js/services/usersService.js"></script>
 <script src="js/services/postsService.js"></script>
 <script src="js/services/userProfileService.js"></script>
-
+<!-- Services -->
 </body>
 </html>

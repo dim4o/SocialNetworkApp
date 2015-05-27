@@ -149,6 +149,16 @@ socialNetworkApp.controller('postsController',
                 });
         };
 
+        $scope.getPostPreviewLikes = function (postId) {
+            postsService.getPostPreviewLikes(postId)
+                .then(function (likesPreviewData) {
+                    console.log(likesPreviewData);
+                    $scope.likesPreviewData = likesPreviewData;
+                }, function (error) {
+                    console.log(error);
+                })
+        }
+
         //$(document).ready(function(){
         //    $('[data-toggle="popover"]').popover();
         //});

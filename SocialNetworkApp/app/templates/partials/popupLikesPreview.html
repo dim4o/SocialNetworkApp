@@ -1,0 +1,15 @@
+<div class="modal-content likes-preview-box">
+    <div class="modal-body">
+        <a href="#/users/{{like.user.username}}" ng-repeat="like in likesPreviewData.postLikes">
+            <div class="row">
+                <div class="col-md-4">
+                    <img ng-src="{{like.user.profileImageData}}" alt=""/>
+                </div>
+                <div class="col-md-8">
+                    <strong>{{like.user.name}}</strong><br/>
+                    {{like.user.gender | genderFilter}}
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
