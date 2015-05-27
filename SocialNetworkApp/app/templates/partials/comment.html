@@ -44,7 +44,18 @@
             </a>
         </span>
 
-        <span class="pull-right">Likes:<span class="badge">{{comment.likesCount}}</span></span>
+        <!-- Likes area -->
+        <span class="pull-right">
+            Likes:
+            <span ng-click="getCommentPreviewLikes(post.id, comment.id); showLikesPreview = true;" class="badge">
+                {{comment.likesCount}}
+            </span>
+            <span ng-init="showLikesPreview = false" ng-show="showLikesPreview"
+                  ng-mouseleave="showLikesPreview = false;">
+                <span ng-include="'./templates/partials/popupLikesPreview.html'"></span>
+            </span>
+        </span>
+        <!-- Likes area -->
 
         <a ng-if="isMyOwnWall() || (comment.author.username == myUsername())"
            ng-click="deleteComment(post.id, comment.id, parentIndex, $index)">

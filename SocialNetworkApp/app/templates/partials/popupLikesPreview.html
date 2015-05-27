@@ -1,6 +1,7 @@
 <div class="modal-content likes-preview-box">
     <div class="modal-body">
-        <a href="#/users/{{like.user.username}}" ng-repeat="like in likesPreviewData.postLikes">
+        <a href="#/users/{{like.user.username}}"
+           ng-repeat="like in (likesPreviewData.postLikes || likesPreviewData.commentLikes)">
             <div class="row">
                 <div class="col-md-4">
                     <img ng-src="{{like.user.profileImageData}}" alt=""/>

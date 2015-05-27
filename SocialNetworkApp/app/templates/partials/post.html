@@ -23,6 +23,7 @@
         {{post.postContent}} <br/>
     </div>
     <div class="panel-heading">
+        <!-- Likes area -->
         <span class="pull-right">
             Likes:
             <span ng-click="getPostPreviewLikes(post.id); showLikesPreview = true;" class="badge">
@@ -33,6 +34,8 @@
                 <span ng-include="'./templates/partials/popupLikesPreview.html'"></span>
             </span>
         </span>
+        <!-- Likes area -->
+
         <span class="pull-right">
             Comments: <span class="badge">{{post.totalCommentsCount}}</span>
         </span>

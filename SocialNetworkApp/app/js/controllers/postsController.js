@@ -139,6 +139,10 @@ socialNetworkApp.controller('postsController',
         };
 
         $scope.deletePost = function (post, i) {
+            $scope.likesPreviewData = {};
+            $scope.likesPreviewData.postLikes = {};
+            //$scope.likesPreviewData.commentLikes = {};
+
             postsService.deletePost(post.id)
                 .then(function () {
                     $scope.postsData.splice(i, 1);
@@ -149,15 +153,31 @@ socialNetworkApp.controller('postsController',
                 });
         };
 
+
+
         $scope.getPostPreviewLikes = function (postId) {
+            $scope.likesPreviewData = {};
+            //$scope.likesPreviewData.postLikes = {};
+            $scope.likesPreviewData.commentLikes = {};
+
             postsService.getPostPreviewLikes(postId)
-                .then(function (likesPreviewData) {
-                    console.log(likesPreviewData);
-                    $scope.likesPreviewData = likesPreviewData;
+                .then(function (postLikesPreviewData) {
+                    console.log(postLikesPreviewData);
+                    $scope.likesPreviewData = postLikesPreviewData;
                 }, function (error) {
                     console.log(error);
                 })
-        }
+        };
+
+        $scope.getCommentPreviewLikes = function (postId, commentId) {
+            postsService.getCommentPreviewLikes(postId, commentId)
+                .then(function (commentLikesPreviewData) {
+                    console.log(commentLikesPreviewData);
+                    $scope.likesPreviewData = commentLikesPreviewData;
+                }, function (error) {
+                    console.log(error);
+                })
+        };
 
         //$(document).ready(function(){
         //    $('[data-toggle="popover"]').popover();

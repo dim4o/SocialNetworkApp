@@ -82,6 +82,11 @@ function postsService($http, $q, baseServiceUrl, authorizationService) {
         return userDataRequester('GET', serviceUrl + postId + '/likes/preview');
     };
 
+    var getCommentPreviewLikes = function (postId, commentId) {
+        return userDataRequester('GET', serviceUrl + postId +
+            '/comments/' + commentId + '/likes/preview');
+    };
+
     return {
         addNewPost: addNewPost,
         deletePost: deletePost,
@@ -93,6 +98,7 @@ function postsService($http, $q, baseServiceUrl, authorizationService) {
         likeComment: likeComment,
         unlikeComment: unlikeComment,
         getPostComments: getPostComments,
-        getPostPreviewLikes: getPostPreviewLikes
+        getPostPreviewLikes: getPostPreviewLikes,
+        getCommentPreviewLikes: getCommentPreviewLikes
     }
 }
