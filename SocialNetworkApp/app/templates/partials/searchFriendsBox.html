@@ -1,6 +1,6 @@
-<div class="form-group" ng-controller="friendsController">
+<div class="form-group"  ng-controller="friendsController">
     <input type="search" ng-model="searchName" class="form-control"
-           placeholder="Search" ng-change="search(searchName)">
+           placeholder="Search" ng-change="search(searchName);">
     <div class="searchBox">
         <div ng-repeat="user in users">
             <a href="#/users/{{user.username}}">

@@ -1,5 +1,5 @@
 socialNetworkApp.controller('postsController',
-    function postController($scope, postsService, $routeParams, notificationService) {
+    function postController($scope, $rootScope, postsService, $routeParams, notificationService) {
 
         console.log('Post Controller Initialization');
 
@@ -88,6 +88,10 @@ socialNetworkApp.controller('postsController',
                 .then(function (post) {
                     notificationService.success('Success', 'Post successfully added.');
                     $scope.postsData.unshift(post);
+
+                    $rootScope.sidebar = {
+                        show  : true
+                    }
                 }, function (error) {
                     notificationService.error('Error', 'Failed to add post.');
                     console.log(error);
@@ -163,8 +167,6 @@ socialNetworkApp.controller('postsController',
                     console.log(error);
                 });
         };
-
-
 
         $scope.getPostPreviewLikes = function (postId) {
             $scope.likesPreviewData = {};

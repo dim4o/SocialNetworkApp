@@ -11,7 +11,7 @@
                     <strong><a href="">{{comment.author.name}}</a></strong></span>
                 <span>{{comment.date | date:'d MMM yyyy HH:mm:ss'}}</span>
 
-                <div ng-mouseleave="showDiv = false;" ng-show="showDiv" class="popupPreview">
+                <div ng-mouseleave="showDiv = false;" ng-show="showDiv" class="popupPreview animate-show">
                     <div ng-include="'templates/partials/popupUserDetails.html'"></div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
     </div>
     {{showEditDialog}}
     <!-- Edit Area -->
-    <div class="panel-body" ng-show="showEditArea">
+    <div class="panel-body animate-show" ng-show="showEditArea">
 
         <textarea class="form-control" ng-model="content" ng-init="content = comment.commentContent" >
             {{content}}

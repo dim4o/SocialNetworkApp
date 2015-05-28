@@ -31,20 +31,29 @@
             </li>
 
             <li ng-controller="friendRequestsController">
-                <a ng-click="showFriendRequests()" href="">
-                    Friend requests
+                <a ng-click="showFriendRequests(); showRequests = true;" href="">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Friend requests
                     <span class="badge">{{numberOfRequests || "0"}}</span>
                 </a>
-                <div class="searchBox" ng-include="'./templates/partials/friendRequestsBox.html'"></div>
+                <div ng-show="showRequests" class="searchBox animate-show" ng-init="showRequests = false;"
+                     ng-mouseleave="showRequests = false">
+                    <div ng-include="'./templates/partials/friendRequestsBox.html'"></div>
+                </div>
             </li>
             <li>
-                <a href="#/edit-profile">Edit Profile</a>
+                <a href="#/edit-profile" title="Edit Profile">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                </a>
             </li>
             <li>
-                <a href="#/change-password">Change Password</a>
+                <a href="#/change-password" title="Change Password">
+                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                </a>
             </li>
             <li ng-controller="logoutController">
-                <a ng-click="logout()">Logout</a>
+                <a ng-click="logout()">
+                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                </a>
             </li>
             <!--<li ng-controller="logoutController">-->
                 <!--<a href="#/users/:username/friends">Friends</a>-->

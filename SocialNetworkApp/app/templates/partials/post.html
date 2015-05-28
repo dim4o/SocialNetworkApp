@@ -1,5 +1,5 @@
 <!--post-->
-<div class="panel panel-default" ng-init="toLocalTimeZone(post)">
+<div class="panel panel-default" ng-init="toLocalTimeZone(post);">
     <div class="panel-heading">
         <div class="row panel-body">
             <div class="post-profile-image col-md-4">
@@ -23,7 +23,7 @@
         {{post.postContent}} <br/>
 
         <!-- Edit Area -->
-        <div class="panel-body" ng-show="showEditArea">
+        <div class="panel-body animate-show" ng-show="showEditArea">
 
         <textarea class="form-control" ng-model="content" ng-init="content = post.postContent" >
             {{content}}
@@ -89,7 +89,8 @@
         </a>
         </a>
         <a>
-            <button ng-if="isMyOwnWall() || (post.author.username == myUsername())" ng-click="deletePost(post, $index)" class="btn btn-primary btn-xs">
+            <button ng-if="isMyOwnWall() || (post.author.username == myUsername())"
+                    ng-click="deletePost(post, $index);" class="btn btn-primary btn-xs">
                 Delete
             </button>
         </a>
@@ -107,8 +108,7 @@
     <!--<textarea ng-model="comment"></textarea>-->
     <!--<button ng-click="addCommentToPost(feed, $index, comment)">Send</button>-->
 <!--</div>-->
-
-<div ng-show="showCommentArea" class="well bs-component col-md-10 pull-right">
+<div ng-show="showCommentArea" class="well bs-component col-md-10 pull-right animate-show">
     <form class="form-horizontal">
         <fieldset>
             <div class="form-group">
