@@ -5,10 +5,10 @@
     </div>
     <div class="navbar-collapse collapse" > <!--id="navbar-main"-->
         <ul class="nav navbar-nav">
-            <li>
+            <li ng-class="{ active: isActive('/login')}">
                 <a href="#/login">Login</a>
             </li>
-            <li>
+            <li ng-class="{ active: isActive('/register')}">
                 <a href="#/register">Register</a>
             </li>
         </ul>
@@ -19,20 +19,25 @@
 <!--user navigation-->
 <div class="container-fluid" ng-if="isLogged" ng-init="intervalFunction()">
     <div class="navbar-header">
-        <a href="#/" class="navbar-brand">Social Network</a>
+        <a href="#/" class="navbar-brand">{{name || 'Social Network'}}</a>
     </div>
     <div class="navbar-collapse collapse" ><!--id="navbar-main"-->
-        <ul class="nav navbar-nav">
+        <ul class="home nav navbar-nav">
             <li>
                 <a href="#/">
                     <img ng-if="profileImage" ng-src="{{profileImage}}" class="navbarProfileImage" alt=""/>
                     <img ng-if="!profileImage" src="./img/defaultProfileImage.png" class="navbarProfileImage" alt=""/>
                 </a>
             </li>
+            <li ng-class="{ active: isActive('/')}">
+                <a href="#/">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+            </li>
 
             <li ng-controller="friendRequestsController">
                 <a ng-click="showFriendRequests(); showRequests = true;" href="">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Friend requests
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                     <span class="badge">{{numberOfRequests || "0"}}</span>
                 </a>
                 <div ng-show="showRequests" class="searchBox animate-show" ng-init="showRequests = false;"
@@ -40,12 +45,12 @@
                     <div ng-include="'./templates/partials/friendRequestsBox.html'"></div>
                 </div>
             </li>
-            <li>
+            <li ng-class="{ active: isActive('/edit-profile')}">
                 <a href="#/edit-profile" title="Edit Profile">
                     <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                 </a>
             </li>
-            <li>
+            <li ng-class="{ active: isActive('/change-password')}">
                 <a href="#/change-password" title="Change Password">
                     <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
                 </a>
@@ -56,7 +61,7 @@
                 </a>
             </li>
             <!--<li ng-controller="logoutController">-->
-                <!--<a href="#/users/:username/friends">Friends</a>-->
+            <!--<a href="#/users/:username/friends">Friends</a>-->
             <!--</li>-->
         </ul>
         <form class="navbar-form navbar-right" role="search"

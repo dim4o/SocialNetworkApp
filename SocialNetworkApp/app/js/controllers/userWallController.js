@@ -1,26 +1,18 @@
 socialNetworkApp.controller('userWallController',
-    function ($scope, usersService, $routeParams) {
+    function ($scope, usersService, $routeParams, usSpinnerService) {
         //$scope.userWallData = {};
 
         $scope.currUserUsername = $routeParams.username;
 
-        usersService.getFriendWallByPages($routeParams.username)
-                .then(function (userWallDataInfo) {
-                    $scope.postsData = userWallDataInfo;
-                    console.log($scope.postsData);
-                    $scope.currentUsername = $routeParams.username;
-                }, function (error) {
-                     console.log(error);
-                });
-        //userData.getNewsFeedsPages()
-        //    .then(function (newsFeedsData) {
-        //        $scope.newsFeedsData = newsFeedsData;
-        //        $scope.limit = 1000;
-        //    }, function (error) {
-        //        console.log(error);
-        //    });
+        //usersService.getFriendWallByPages($routeParams.username)
+        //        .then(function (userWallDataInfo) {
+        //            $scope.postsData = userWallDataInfo;
+        //            console.log($scope.postsData);
+        //            $scope.currentUsername = $routeParams.username;
+        //        }, function (error) {
+        //             console.log(error);
+        //        });
 
-        //};
         usersService.getUserFullData($routeParams.username)
             .then(function (userFullData) {
                 $scope.currUserUsername = null;
@@ -51,5 +43,37 @@ socialNetworkApp.controller('userWallController',
         //    }, function (error) {
         //        console.log(error);
         //    });
+
+        console.log('Pagination Controller Initialization');
+        //$scope.postss = {};
+        usSpinnerService.spin('spinner-1');
+
+        usersService.getFriendWallByPages($routeParams.username, '', 5)
+            .then(function (postsData) {
+                console.log('First page post request: ');
+                console.log(postsData);
+                //return postsData;
+                $scope.postsData = postsData;
+                $scope.currentUsername = $routeParams.username;
+
+                $scope.loadMore = function () {
+                    var lastPost = $scope.postsData[$scope.postsData.length - 1];
+                    usSpinnerService.spin('spinner-1');
+                    usersService.getFriendWallByPages($routeParams.username, lastPost.id, 5)
+                        .then(function (newPostsData) {
+                            for (var i = 0; i < newPostsData.length; i++) {
+                                $scope.postsData.push(newPostsData[i]);
+                            }
+                            usSpinnerService.stop('spinner-1');
+                            console.log('New pages post requests: ');
+                            console.log(newPostsData);
+                        }, function () {
+                            console.log(error);
+                        });
+                };
+                usSpinnerService.stop('spinner-1');
+            }, function (error) {
+                console.log(error);
+            });
         
     });

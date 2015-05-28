@@ -1,11 +1,53 @@
 .glyphicon {
-	font-size: 36px;
-}
-
-.navbar-default .navbar-nav > li > a {
+	font-size: 30px;
 	line-height: 50px;
 }
-	/*Start Animation*/
+
+/*.active {*/
+	/*padding: 35px;*/
+	/*/!*margin: 0;*!/*/
+/*}*/
+
+.home.nav.navbar-nav > .active > a {
+	padding: 10px 23px;
+}
+
+.home.nav > li {
+	padding: 0;
+	vertical-align: middle;
+}
+.home.nav > li  > a {
+	line-height: 40px;
+	vertical-align: middle;
+}
+
+.home.navbar-nav > li > a {
+	/*line-height: 50px;*/
+	padding: 5px 20px;
+}
+
+/*SEARCH*/
+/* enable absolute positioning */
+.inner-addon {
+	position: relative;
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+	position: absolute;
+	padding: 0;
+	pointer-events: none;
+	font-size: 25px;
+}
+
+/* align icon */
+.right-addon .glyphicon { right: 5px;}
+
+/* add padding  */
+.right-addon input { padding-right: 30px; }
+/*SEARCH*/
+
+/*Start Animation*/
 .animate-show {
 	line-height: 20px;
 	opacity: 1;

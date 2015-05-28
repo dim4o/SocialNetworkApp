@@ -7,6 +7,11 @@ socialNetworkApp.controller('navigationController',
         $scope.isLogged = authorizationService.isLogged();
 
         if (sessionStorage.getItem('userData')) {
+            $scope.name = JSON.parse(sessionStorage.getItem('userData')).name;
+        }
+
+
+        if (sessionStorage.getItem('userData')) {
             $scope.profileImage = JSON.parse(sessionStorage.getItem('userData')).profileImageData;
         } else if($scope.isLogged){
             userProfileService.getMyProfileData()
@@ -14,10 +19,19 @@ socialNetworkApp.controller('navigationController',
                     sessionStorage['userData'] = JSON.stringify(data);
                     $scope.profileImage = data.profileImageData;
                     //$scope.currUserUsername = sessionStorage['username'];
+                    $scope.name = data.name;
+
                 }, function (error) {
                     console.log(error);
                 });
         }
+
+
+
+        $scope.isActive = function (viewLocation) {
+            return viewLocation === $location.path();
+        };
+
 
         $scope.intervalFunction = function(){
             $timeout(function() {

@@ -1,6 +1,11 @@
 <div class="form-group"  ng-controller="friendsController">
-    <input type="search" ng-model="searchName" class="form-control"
-           placeholder="Search" ng-change="search(searchName);">
+    <div class="inner-addon right-addon">
+        <i class="glyphicon glyphicon-search"></i>
+        <input type="search" ng-model="searchName" class="form-control"
+               placeholder="Search" ng-change="search(searchName);">
+    </div>
+
+
     <div class="searchBox">
         <div ng-repeat="user in users">
             <a href="#/users/{{user.username}}">
@@ -11,4 +16,4 @@
         </div>
     </div>
 </div>
-<button type="submit" class="btn btn-default">Search</button>
+<!--<button type="submit" class="btn btn-default">Search</button>-->

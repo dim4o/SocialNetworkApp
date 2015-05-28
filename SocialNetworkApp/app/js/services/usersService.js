@@ -76,10 +76,13 @@ function usersService($http, $q, baseServiceUrl, authorizationService) {
             friendsUsername +'/friends')
     };
 
-    // TODO: delete
-    var getFriendWallByPages = function (username) {
+    var getFriendWallByPages = function (username, startPostId, pageSize) {
+        if (!startPostId) {
+            startPostId = '';
+        }
         return userDataRequester('GET', baseServiceUrl +
-            'users/' + username+ '/wall?StartPostId=&PageSize=10', null);
+            'users/' + username+ '/wall?StartPostId=' + startPostId + '&PageSize='
+            + pageSize, null);
     };
 
     return {
