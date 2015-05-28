@@ -41,6 +41,7 @@
         <!-- Likes area -->
         <span class="pull-right">
             Likes:
+            <!--<span class="glyphicon glyphicon-thumbs-up"></span>-->
             <span ng-click="getPostPreviewLikes(post.id); showLikesPreview = true;" class="badge">
                 {{post.likesCount}}
             </span>
@@ -54,6 +55,7 @@
         <span class="pull-right">
             Comments: <span class="badge">{{post.totalCommentsCount}}</span>
         </span>
+
         <span ng-if="isMyOwnWall() || userFullData.isFriend || post.author.isFriend">
             <a ng-if="isLiked(post)" ng-click="likePost(post)">
                 <button class="btn btn-primary btn-xs">

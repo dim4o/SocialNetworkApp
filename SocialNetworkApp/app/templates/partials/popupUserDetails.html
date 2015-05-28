@@ -1,7 +1,8 @@
 <div class="modal-content">
     <div class="modal-body">
+        <img ng-src="{{userData.profileImageData}}" alt=""/><br/>
         {{userData.name}} / {{userData.gender | genderFilter}}
-        <img ng-src="{{userData.profileImageData}}" alt=""/>
+
     </div>
     <div class="modal-footer" ng-if="myUsername() != userData.username">
         <button ng-if="!userData.isFriend && !userData.hasPendingRequest && !pending"

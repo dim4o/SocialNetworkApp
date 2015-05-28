@@ -2,10 +2,8 @@ socialNetworkApp.controller('friendsController',
     function friendsController($scope, $routeParams, userProfileService, usersService) {
 
         //$scope.ownFriends = {};
-
         $scope.loadFriendsPreview = function () {
             if (!$routeParams.username) {
-                console.log();
                 userProfileService.getMyFriendsPreview()
                     .then(function (ownFriendsPreviewData) {
                         for (var i = 0; i < ownFriendsPreviewData.friends.length; i++) {
@@ -48,6 +46,4 @@ socialNetworkApp.controller('friendsController',
                     });
             }
         };
-
-
     });

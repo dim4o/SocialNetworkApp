@@ -2,7 +2,7 @@
 <div class="navbar navbar-default" ng-include="'./templates/partials/navbar.html'"
      ng-controller="navigationController"></div>
 
-<div class="row col-md-8 col-md-offset-2" ng-controller="userHomeController">
+<div class="row col-md-8 col-md-offset-2" ng-controller="newsFeedController">
      <input  ng-model="friend.name" class="form-control ng-pristine ng-valid ng-touched" placeholder="Search" ng-change="search(searchName)">
 
      <div ng-controller="friendsController" ng-init="loadFriendsList()">

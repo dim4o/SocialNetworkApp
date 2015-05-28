@@ -44,36 +44,56 @@ socialNetworkApp.controller('userWallController',
         //        console.log(error);
         //    });
 
-        console.log('Pagination Controller Initialization');
-        //$scope.postss = {};
-        usSpinnerService.spin('spinner-1');
+        $scope.loadUserWall = function() {
+            usSpinnerService.spin('spinner-1');
+            usersService.getFriendWallByPages($routeParams.username, '', 5)
+                .then(function (postsData) {
+                    console.log('First page post request: ');
+                    console.log(postsData);
+                    //return postsData;
+                    $scope.postsData = postsData;
+                    $scope.currentUsername = $routeParams.username;
 
-        usersService.getFriendWallByPages($routeParams.username, '', 5)
-            .then(function (postsData) {
-                console.log('First page post request: ');
-                console.log(postsData);
-                //return postsData;
-                $scope.postsData = postsData;
-                $scope.currentUsername = $routeParams.username;
 
-                $scope.loadMore = function () {
-                    var lastPost = $scope.postsData[$scope.postsData.length - 1];
-                    usSpinnerService.spin('spinner-1');
-                    usersService.getFriendWallByPages($routeParams.username, lastPost.id, 5)
-                        .then(function (newPostsData) {
-                            for (var i = 0; i < newPostsData.length; i++) {
-                                $scope.postsData.push(newPostsData[i]);
-                            }
-                            usSpinnerService.stop('spinner-1');
-                            console.log('New pages post requests: ');
-                            console.log(newPostsData);
-                        }, function () {
-                            console.log(error);
-                        });
-                };
-                usSpinnerService.stop('spinner-1');
-            }, function (error) {
-                console.log(error);
-            });
+                    usSpinnerService.stop('spinner-1');
+                }, function (error) {
+                    console.log(error);
+                });
+        };
+
+        // Pagination
+        $scope.loadMore = function () {
+            if ($scope.postsData) {
+                var lastPost = $scope.postsData[$scope.postsData.length - 1];
+                usSpinnerService.spin('spinner-1');
+                usersService.getFriendWallByPages($routeParams.username, lastPost.id, 5)
+                    .then(function (newPostsData) {
+                        for (var i = 0; i < newPostsData.length; i++) {
+                            $scope.postsData.push(newPostsData[i]);
+                        }
+                        usSpinnerService.stop('spinner-1');
+                        console.log('New pages post requests: ');
+                        console.log(newPostsData);
+                    }, function () {
+                        console.log(error);
+                    });
+            }
+        };
+
+        // new
+        //usersService.getFriendsFriendsPreview($routeParams.username)
+        //    .then(function (fiendsFriendsData) {
+        //        console.log(fiendsFriendsData);
+        //        $scope.friendsPreviewList = fiendsFriendsData; // TODO: za redakciq
+        //    }, function (error) {
+        //        console.log(error);
+        //    });
+        //
+        //usersService.getDetailedFriendsFriendsList($routeParams.username)
+        //    .then(function (detailedFriendsFriendsList) {
+        //        $scope.detailedFriendsList = detailedFriendsFriendsList;
+        //    }, function (error) {
+        //        console.log(error);
+        //    });
         
     });
