@@ -110,7 +110,7 @@ socialNetworkApp.controller('postsController',
                     $scope.postsData[i]['comments'].unshift(commentData);
                     notificationService.success('Success', 'Comment successfully added.');
                 }, function (error) {
-                    notificationService.success('Error', 'Failed to add comment.');
+                    notificationService.error('Error', 'Failed to add comment.');
                     console.log(error);
                 });
         };
@@ -198,8 +198,12 @@ socialNetworkApp.controller('postsController',
 
 
 
-        $scope.isMyOwnWall = function () {
+        $scope.isMyNewsFeed = function () {
             return !$routeParams.username;
+        };
+
+        $scope.isMyOwnWall = function () {
+            return $routeParams.username == sessionStorage['username'] ;
         };
 
         $scope.myUsername = function () {

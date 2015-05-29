@@ -12,7 +12,7 @@
                 </span> to <strong>{{post.wallOwner.name}}</strong><br/>
                 <span>{{post.date | date : 'd MMM yyyy, HH:mm:ss'}}</span>
 
-                <div ng-mouseleave="showDiv = false;" ng-show="showDiv" class="popupPreview animate-show">
+                <div ng-controller="friendRequestsController" ng-mouseleave="showDiv = false;" ng-show="showDiv" class="popupPreview animate-show">
                     <div ng-include="'templates/partials/popupUserDetails.html'"></div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
     </div>
     <div class="panel-body">
         <div class="col-md-12"></div>
-        {{post.postContent}} <br/>
+        <span ng-show="!showEditArea">{{post.postContent}}</span><br/>
 
         <!-- Edit Area -->
         <div class="panel-body animate-show" ng-show="showEditArea">
@@ -38,25 +38,7 @@
         <!-- Edit Area -->
     </div>
     <div class="panel-heading">
-        <!-- Likes area -->
-        <span class="pull-right">
-            Likes:
-            <!--<span class="glyphicon glyphicon-thumbs-up"></span>-->
-            <span ng-click="getPostPreviewLikes(post.id); showLikesPreview = true;" class="badge">
-                {{post.likesCount}}
-            </span>
-            <span ng-init="showLikesPreview = false" ng-show="showLikesPreview"
-                  ng-mouseleave="showLikesPreview = false;">
-                <span ng-include="'./templates/partials/popupLikesPreview.html'"></span>
-            </span>
-        </span>
-        <!-- Likes area -->
-
-        <span class="pull-right">
-            Comments: <span class="badge">{{post.totalCommentsCount}}</span>
-        </span>
-
-        <span ng-if="isMyOwnWall() || userFullData.isFriend || post.author.isFriend">
+        <span ng-if="isMyNewsFeed() || userFullData.isFriend || post.author.isFriend">
             <a ng-if="isLiked(post)" ng-click="likePost(post)">
                 <button class="btn btn-primary btn-xs">
                     Like
@@ -84,26 +66,42 @@
 
         <!---->
         <a ng-click="showCommentArea = true;" ng-init="showCommentArea = false;">
-            <button ng-if="isMyOwnWall() || post.author.isFriend || userFullData.isFriend || (post.author.username == myUsername())"
+            <button ng-if="isMyNewsFeed() || post.author.isFriend || userFullData.isFriend || (post.author.username == myUsername())"
                     ng-disabled="showCommentArea" class="btn btn-primary btn-xs">
                 Comment
             </button>
         </a>
-        </a>
-        <a>
+
+        <a ng-click="deletePost(post, $index);">
             <button ng-if="isMyOwnWall() || (post.author.username == myUsername())"
-                    ng-click="deletePost(post, $index);" class="btn btn-primary btn-xs">
+                    class="btn btn-primary btn-xs">
                 Delete
             </button>
         </a>
 
-        <a ng-if="post.author.username == myUsername()" >
-            <a ng-click="showEditArea = true" ng-init="showEditArea = false;">
-                <button class="btn btn-primary btn-xs" ng-disabled="showEditArea">
-                    Edit-{{showEditDialog}}
-                </button>
-            </a>
+        <a ng-click="showEditArea = true" ng-init="showEditArea = false;">
+            <button ng-if="post.author.username == myUsername()" class="btn btn-primary btn-xs" ng-disabled="showEditArea">
+                Edit
+            </button>
         </a>
+        <!-- Likes area -->
+        <span class="pull-right">
+            Likes:
+            <!--<span class="glyphicon glyphicon-thumbs-up"></span>-->
+            <span ng-click="getPostPreviewLikes(post.id); showLikesPreview = true;" class="badge">
+                {{post.likesCount}}
+            </span>
+            <span ng-init="showLikesPreview = false" ng-show="showLikesPreview"
+                  ng-mouseleave="showLikesPreview = false;">
+                <span ng-include="'./templates/partials/popupLikesPreview.html'"></span>
+            </span>
+        </span>
+        <!-- Likes area -->
+
+        <span class="pull-right">
+            Comments: <span class="badge">{{post.totalCommentsCount}}</span>
+        </span>
+        <div class="clearfix"></div>
     </div>
 </div>
 <!--<div class="panel panel-default">-->
@@ -118,21 +116,20 @@
                     <textarea ng-model="comment" class="form-control" rows="3" id="textArea" placeholder="Message"></textarea>
                 </div>
             </div>
-
-            <div class="form-group">
-                <!--<div class="col-lg-10 col-lg-offset-1">-->
-                    <button ng-click="addCommentToPost(post, $index, comment)"
-                            type="submit" class="btn btn-primary btn-xs pull-right">
-                        Post comment
-                    </button>
-                    <button ng-click="showCommentArea = false;"
-                            type="submit" class="btn btn-primary btn-xs pull-right">
-                        Cancel comment
-                    </button>
-                <!--</div>-->
-            </div>
         </fieldset>
     </form>
+    <div class="form-group">
+        <!--<div class="col-lg-10 col-lg-offset-1">-->
+            <button ng-click="addCommentToPost(post, $index, comment)"
+                    type="submit" class="btn btn-primary btn-xs pull-right">
+                Post comment
+            </button>
+            <button ng-click="showCommentArea = false;"
+                    type="submit" class="btn btn-primary btn-xs pull-right">
+                Cancel comment
+            </button>
+        <!--</div>-->
+    </div>
 </div>
 
 <div class="clearfix"></div>

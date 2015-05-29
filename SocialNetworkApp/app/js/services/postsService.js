@@ -1,6 +1,6 @@
 socialNetworkApp.factory('postsService', postsService);
 
-function postsService($http, $q, baseServiceUrl, authorizationService) {
+function postsService($http, $q, baseServiceUrl, authorizationService, $rootScope) {
     var serviceUrl = baseServiceUrl + 'posts/';
 
     function userDataRequester(method, url, data) {

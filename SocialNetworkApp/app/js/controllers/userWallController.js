@@ -27,7 +27,7 @@ socialNetworkApp.controller('userWallController',
             $scope.showPopup = true;
             $scope.userData = {};
             $scope.userData.profileImageData = './img/defaultProfileImage.png';
-            $(".anim").show(300).delay(900).hide(300);
+            //$(".anim").show(300).delay(900).hide(300);
             usersService.getUserPreviewData(username)
                 .then(function (userData) {
                     $scope.userData = userData;
@@ -63,7 +63,9 @@ socialNetworkApp.controller('userWallController',
 
         // Pagination
         $scope.loadMore = function () {
-            if ($scope.postsData) {
+            if ($scope.postsData && $scope.postsData.length > 0) {
+                console.log('PostsData: ');
+                console.log(JSON.stringify(postsData));
                 var lastPost = $scope.postsData[$scope.postsData.length - 1];
                 usSpinnerService.spin('spinner-1');
                 usersService.getFriendWallByPages($routeParams.username, lastPost.id, 5)

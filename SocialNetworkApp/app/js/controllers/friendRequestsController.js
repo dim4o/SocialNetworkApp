@@ -1,5 +1,5 @@
 socialNetworkApp.controller('friendRequestsController',
-    function friendRequestsController($scope, userProfileService) {
+    function friendRequestsController($scope, userProfileService, notificationService) {
         $scope.friendRequestsData = {};
         //showFriendRequests();
         // TODO: very similar
@@ -41,5 +41,18 @@ socialNetworkApp.controller('friendRequestsController',
                 }, function () {
                     alert('Rejected!')
                 });
-        }
+        };
+
+        // TODO: same method exists
+        $scope.pending = false;
+        $scope.sendFriendRequest = function (username) {
+            userProfileService.sendFriendRequest(username)
+                .then(function (success) {
+                    notificationService.success("Success", "Friend request is sent.");
+                    $scope.pending = true;
+                }, function (error) {
+                    notificationService.error("Error", "The request can not be sent;");
+                    console.log(error);
+                })
+        };
     });

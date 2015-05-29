@@ -11,7 +11,7 @@
                     <strong><a href="">{{comment.author.name}}</a></strong></span>
                 <span>{{comment.date | date:'d MMM yyyy HH:mm:ss'}}</span>
 
-                <div ng-mouseleave="showDiv = false;" ng-show="showDiv" class="popupPreview animate-show">
+                <div ng-controller="friendRequestsController" ng-mouseleave="showDiv = false;" ng-show="showDiv" class="popupPreview animate-show">
                     <div ng-include="'templates/partials/popupUserDetails.html'"></div>
                 </div>
             </div>
@@ -37,12 +37,16 @@
     <!-- Edit Area -->
     <div class="panel-heading">
 
-        <span ng-if="isMyOwnWall() || userFullData.isFriend || comment.author.isFriend">
+        <span ng-if="isMyNewsFeed() || userFullData.isFriend || comment.author.isFriend">
             <a ng-if="isLiked(comment)" ng-click="likeComment(post.id, comment)">
-                <button class="btn btn-primary btn-xs">Like</button>
+                <button class="btn btn-primary btn-xs">
+                    Like
+                </button>
             </a>
             <a ng-if="isNotLiked(comment)" ng-click="unlikeComment(post.id, comment)">
-                <button class="btn btn-primary btn-xs">Unlike</button>
+                <button class="btn btn-primary btn-xs">
+                    Unlike
+                </button>
             </a>
         </span>
 
@@ -59,20 +63,21 @@
         </span>
         <!-- Likes area -->
 
-        <a ng-if="isMyOwnWall() || (comment.author.username == myUsername())"
+        <a ng-if="isMyNewsFeed() || (comment.author.username == myUsername())"
            ng-click="deleteComment(post.id, comment.id, parentIndex, $index)">
             <button class="btn btn-primary btn-xs">
                 Delete {{parentIndex}} - {{$index}}
             </button>
         </a>
 
-        <a ng-if="comment.author.username == myUsername()" >
-            <a ng-click="showEditArea = true" ng-init="showEditArea = false;">
-                <button class="btn btn-primary btn-xs" ng-disabled="showEditArea">
-                    Edit-{{showEditDialog}}
-                </button>
-            </a>
+
+        <a ng-click="showEditArea = true" ng-init="showEditArea = false;">
+            <button ng-if="comment.author.username == myUsername()" class="btn btn-primary btn-xs"
+                    ng-disabled="showEditArea">
+                Edit-{{showEditDialog}}
+            </button>
         </a>
+
         <div class="clearfix"></div>
 
         <!--<div class="panel-body" ng-show="showEditArea">-->

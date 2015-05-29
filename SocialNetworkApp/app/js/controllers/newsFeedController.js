@@ -24,17 +24,17 @@ socialNetworkApp.controller('newsFeedController',
             $scope.showPopup = false;
         };
 
-        $scope.pending = false;
-        $scope.sendFriendRequest = function (username) {
-            userProfileService.sendFriendRequest(username)
-                .then(function (success) {
-                    notificationService.success("Success", "Friend request is sent.");
-                    $scope.pending = true;
-                }, function (error) {
-                    notificationService.error("Error", "The request can not be sent;");
-                    console.log(error);
-                })
-        };
+        //$scope.pending = false;
+        //$scope.sendFriendRequest = function (username) {
+        //    userProfileService.sendFriendRequest(username)
+        //        .then(function (success) {
+        //            notificationService.success("Success", "Friend request is sent.");
+        //            $scope.pending = true;
+        //        }, function (error) {
+        //            notificationService.error("Error", "The request can not be sent;");
+        //            console.log(error);
+        //        })
+        //};
 
         $scope.loadNewsFeed = function () {
             usSpinnerService.spin('spinner-1');
@@ -51,7 +51,7 @@ socialNetworkApp.controller('newsFeedController',
 
         // Pagination
         $scope.loadMore = function () {
-            if ($scope.postsData) {
+            if ($scope.postsData && $scope.postsData.length > 0) {
                 var lastPost = $scope.postsData[$scope.postsData.length - 1];
                 usSpinnerService.spin('spinner-1');
                 userProfileService.getNewsFeedsPages(lastPost.id, 5)

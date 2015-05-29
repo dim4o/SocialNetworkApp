@@ -2,25 +2,32 @@
 <div class="navbar navbar-default" ng-include="'./templates/partials/navbar.html'"
      ng-controller="navigationController"></div>
 
-<div style="margin-bottom: 30px">
-    <div class="row userWallCoverImage">
-        <img ng-src="{{userFullData.coverImageData}}" alt=""/>
+<div class="row" style="margin-bottom: 30px">
+    <div class="col-md-12">
+        <div class="row userWallCoverImage">
+            <img ng-src="{{userFullData.coverImageData}}" alt=""/>
 
+        </div>
+        <div class="row userWallProfileImage">
+            <img ng-src="{{userFullData.profileImageData}}"
+                 class="" alt=""/>
+        </div>
     </div>
-    <div class="row userWallProfileImage">
-        <img ng-src="{{userFullData.profileImageData}}"
-             class="" alt=""/>
-    </div>
-    <button ng-if="userFullData.isFriend" ng-disabled="true" class="btn btn-primary">
-        Friends
-    </button>
-    <button ng-if="userFullData.hasPendingRequest" ng-disabled="true" class="btn btn-primary">
-        Pending
-    </button>
-    <button ng-if="!userFullData.isFriend && !userFullData.hasPendingRequest" class="btn btn-primary">
-        Invite
-    </button>
+    <div ng-controller="friendRequestsController" ng-init="popupPersonPreview(currUserUsername)" class="col-md-8">
+        <button ng-if="userFullData.isFriend" ng-disabled="true" class="btn btn-primary">
+            Friends
+        </button>
+        <button ng-if="userFullData.hasPendingRequest || pending" ng-disabled="true" class="btn btn-primary">
+            Pending
+        </button>
 
+        <a ng-click="sendFriendRequest(userData.username)">
+            <button ng-if="!userFullData.isFriend && !userFullData.hasPendingRequest && !pending"
+                    class="btn btn-primary">
+                Invite
+            </button>
+        </a>
+    </div>
 </div>
 
 <div class="row col-md-12" ng-init="loadUserWall()">

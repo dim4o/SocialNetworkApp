@@ -19,12 +19,13 @@
 <!--user navigation-->
 <div class="container-fluid" ng-if="isLogged" ng-init="intervalFunction()">
     <div class="navbar-header">
-        <a href="#/" class="navbar-brand">{{name || 'Social Network'}}</a>
+        <a ng-if="name" href="#/users/dim" class="navbar-brand">{{name}}</a>
+        <a ng-if="!name" href="#/" class="navbar-brand">Social Network</a>
     </div>
     <div class="navbar-collapse collapse" ><!--id="navbar-main"-->
         <ul class="home nav navbar-nav">
             <li>
-                <a href="#/">
+                <a href="#/users/dim">
                     <img ng-if="profileImage" ng-src="{{profileImage}}" class="navbarProfileImage" alt=""/>
                     <img ng-if="!profileImage" src="./img/defaultProfileImage.png" class="navbarProfileImage" alt=""/>
                 </a>
