@@ -5,18 +5,8 @@
         function loginController($scope, $location, usersService, userProfileService,
                                  authorizationService, notificationService, usSpinnerService) {
 
-            //$scope.stopSpin = (function(){
-            //    usSpinnerService.stop('spinner-1');
-            //    $scope.spinneractive = false;
-            //}());
-            //$scope.delay = 0;
-            //$scope.minDuration = 0;
-            //$scope.message = 'Please Wait...';
-            //$scope.backdrop = true;
-            //$scope.promise = null;
-
             $scope.login = function (user) {
-                usSpinnerService.spin('spinner-2');
+                usSpinnerService.spin('spinner-1');
                 usersService.login(user)
                     .then(function (data) {
                         sessionStorage.setItem('username', data.userName);
@@ -24,7 +14,7 @@
                         notificationService.success("Welcome " + data.userName, "Login successful");
                         $location.path('/');
                         //return data;
-                        usSpinnerService.stop('spinner-2');
+                        usSpinnerService.stop('spinner-1');
                     }, function (error) {
                         notificationService.error("Error", "Failed to login! Please try again later.");
                         console.log(error);
