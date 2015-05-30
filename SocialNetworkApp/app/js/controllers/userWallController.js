@@ -4,6 +4,9 @@ socialNetworkApp.controller('userWallController',
 
         $scope.currUserUsername = $routeParams.username;
 
+        $scope.isMyOwnWall = function () {
+            return $routeParams.username = sessionStorage['username'];
+        };
         //usersService.getFriendWallByPages($routeParams.username)
         //        .then(function (userWallDataInfo) {
         //            $scope.postsData = userWallDataInfo;
