@@ -15,31 +15,45 @@ socialNetworkApp.controller('friendRequestsController',
         $scope.getNumberOfRequests();
 
         // TODO: very similar
+        //$scope.showRequests = false;
         $scope.showFriendRequests = function () {
             userProfileService.getFriendRequests()
                 .then(function (friendRequestsData) {
                     $scope.friendRequestsData = friendRequestsData;
+                    if ($scope.friendRequestsData.length > 0) {
+                        $scope.showRequests = true;
+                    }
                 }, function error(error) {
                     console.log(error);
                 })
         };
 
-        $scope.acceptRequest = function (requestId) {
-            userProfileService.approveFriendRequest(requestId)
+        $scope.isFriends = false;
+        $scope.acceptRequest = function (request) {
+            console.log(request);
+            userProfileService.approveFriendRequest(request.id)
                 .then(function () {
                     $scope.numberOfRequests--;
-                    alert('Approved!')
-                }, function () {
-
+                    $scope.isFriends = true;
+                    //$scope.friendRequestsData.splice(index, 1);
+                    notificationService.success('Success', 'You and ' +
+                        request.user.name + ' are now friends!')
+                }, function (error) {
+                    notificationService.error('Error', 'Sorry, the request isn\'t accepted.');
+                    console.log(error);
                 });
         };
 
-        $scope.rejectRequest = function (requestId) {
-            userData.rejectRequest(requestId)
+        $scope.rejectRequest = function (request, index) {
+            userProfileService.rejectFriendRequest(request.id)
                 .then(function () {
                     $scope.numberOfRequests--;
-                }, function () {
-                    alert('Rejected!')
+                    $scope.friendRequestsData.splice(index, 1);
+                    notificationService.success('Success', 'The request from ' +
+                        request.user.name + ' was successfully rejected.')
+                }, function (error) {
+                    notificationService.error('Error', 'Sorry, the request isn\'t accepted.');
+                    console.log(error);
                 });
         };
 

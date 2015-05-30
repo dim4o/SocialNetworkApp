@@ -1,8 +1,20 @@
-<div ng-repeat="request in friendRequestsData">
+<div ng-repeat="request in friendRequestsData track by $index">
     <img ng-src="{{request.user.profileImageData}}" alt=""/>
     <span>{{request.user.name}}</span>
     <div>
-        <button class="btn btn-primary btn-xs" ng-click="acceptRequest(request.id)">Accept</button>
-        <button class="btn btn-primary btn-xs" ng-click="rejectRequest(request.id)">Reject</button>
+        <a ng-init="isFriends = false;" ng-click="acceptRequest(request); isFriends = true">
+            <button ng-if="!isFriends" class="btn btn-primary btn-xs" >
+                Accept / {{isFriends}}
+            </button>
+        </a>
+
+        <button ng-if="isFriends" class="btn btn-primary btn-xs">
+            Friends
+        </button>
+        <!--ng-if="!isFriends"-->
+
+        <button ng-click="rejectRequest(request, $index)" ng-if="!isFriends" class="btn btn-primary btn-xs" >
+            Reject
+        </button>
     </div>
 </div>

@@ -3,8 +3,9 @@
 
     socialNetworkApp.controller('registerController',
         function registerController($scope, $location, usersService, userProfileService,
-                                    authorizationService, notificationService) {
+                                    authorizationService, notificationService, usSpinnerService) {
             $scope.register = function (user) {
+                usSpinnerService.spin('spinner-1');
                 usersService.register(user)
                     .then(function (data) {
                         authorizationService.setAccessToken(data);
@@ -12,24 +13,15 @@
                             .then(function (data) {
                                 notificationService.success("Success", "Registration successful");
                                 sessionStorage['userData'] = JSON.stringify(data);
-                                //loadData();
+                                usSpinnerService.stop('spinner-1')
                             }, function (error) {
                                 notificationService.error("Error", "Failed to register!");
+                                console.log(error);
                             });
                         $location.path('/');
-                }, function (response) {
-                    //var errors = response['modelState'][''];
-                    //errors.forEach(function (error) {
-                    //    //notifier.error(error);
-                    //    console.log(error);
-                    //});
+                }, function (error) {
+                        usSpinnerService.stop('spinner-1')
                 })
             };
-            //$scope.a = 'fsdfsdfsdfsdfsdfsd';
-            //$scope.user = {
-            //    gender: 'Male'
-            //};
         });
-
-
 }());

@@ -17,6 +17,7 @@
                         usSpinnerService.stop('spinner-1');
                     }, function (error) {
                         notificationService.error("Error", "Failed to login! Please try again later.");
+                        usSpinnerService.stop('spinner-1')
                         console.log(error);
                     })
             };

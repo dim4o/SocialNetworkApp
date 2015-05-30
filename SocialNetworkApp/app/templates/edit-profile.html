@@ -1,7 +1,7 @@
 <div class="navbar navbar-default" ng-include="'./templates/partials/navbar.html'"
      ng-controller="navigationController"></div>
 
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-8 col-md-offset-2" ng-controller="readerController">
     <div class="well bs-component row">
         <div class="col-md-6">
             <div class="imageProfileUploadPreview">
@@ -21,21 +21,21 @@
         </div>
 
         <div class="col-md-6">
-            <form class="form-horizontal">
+            <form class="form-horizontal" name="editForm">
                 <fieldset>
                     <legend>Edit Profile</legend>
                     <div class="form-group">
                         <label for="inputName" class="col-lg-2 control-label">Name</label>
                         <div class="col-lg-10">
                             <input ng-model="user.name" type="text" class="form-control"
-                                   id="inputName" placeholder="Name">
+                                   id="inputName" placeholder="Name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputEmail" class="col-lg-2 control-label">Email</label>
                         <div class="col-lg-10">
-                            <input ng-model="user.email" type="text" class="form-control"
-                                   id="inputEmail">
+                            <input validate-email ng-model="user.email" type="text" class="form-control"
+                                   id="inputEmail" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -83,7 +83,7 @@
 
                 </fieldset>
                 <div class="pull-right">
-                    <button ng-click="editProfile(user)" type="submit" class="btn btn-primary">
+                    <button ng-click="editProfile(user)" ng-disabled = "editForm.$invalid" type="submit" class="btn btn-primary">
                         Save Changes
                     </button>
                 </div>

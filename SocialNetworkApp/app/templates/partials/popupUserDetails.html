@@ -1,6 +1,6 @@
 <div class="modal-content">
     <div class="modal-body">
-        <img ng-src="{{userData.profileImageData}}" alt=""/><br/>
+        <img ng-src="{{userData.profileImageData}}" fallback-src="./img/defaultProfileImagePreview.png"/><br/>
         {{userData.name}} / {{userData.gender | genderFilter}}
 
     </div>

@@ -1,4 +1,4 @@
-socialNetworkApp.directive("readProfileImage", [function () {
+socialNetworkApp.directive("readProfileImage", ['notificationService', function (notificationService) {
     return {
         scope: {
             readProfileImage: "="
@@ -13,9 +13,17 @@ socialNetworkApp.directive("readProfileImage", [function () {
                 };
                 if (changeEvent.target.files[0] &&
                     changeEvent.target.files[0].size > 128000) {
-                   console.log('Error!');
+                    console.log('Error!');
+                    console.log(changeEvent.target.files[0].name);
+                    notificationService.error('Error', 'Aasdfsdfd');
+                    attributes.$observe('readProfileImage', function (value) {
+                        console.log(value);
+                    })
                 } else {
                     reader.readAsDataURL(changeEvent.target.files[0]);
+                    attributes.$observe('readProfileImage', function (value) {
+                        console.log(value);
+                    })
                 }
             });
         }

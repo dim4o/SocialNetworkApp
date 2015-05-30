@@ -19,13 +19,13 @@
 <!--user navigation-->
 <div class="container-fluid" ng-if="isLogged" ng-init="intervalFunction()">
     <div class="navbar-header">
-        <a ng-if="name" href="#/users/dim" class="navbar-brand">{{name}}</a>
+        <a ng-if="name" href="#/users/{{username}}" class="navbar-brand">{{name}}</a>
         <a ng-if="!name" href="#/" class="navbar-brand">Social Network</a>
     </div>
     <div class="navbar-collapse collapse" ><!--id="navbar-main"-->
         <ul class="home nav navbar-nav">
             <li>
-                <a href="#/users/dim">
+                <a href="#/users/{{username}}">
                     <img ng-if="profileImage" ng-src="{{profileImage}}" class="navbarProfileImage" alt=""/>
                     <img ng-if="!profileImage" src="./img/defaultProfileImage.png" class="navbarProfileImage" alt=""/>
                 </a>
@@ -37,11 +37,11 @@
             </li>
 
             <li ng-controller="friendRequestsController">
-                <a ng-click="showFriendRequests(); showRequests = true;" href="">
+                <a ng-click="showFriendRequests()" href="">
                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                    <span class="badge">{{numberOfRequests || "0"}}</span>
+                    <span class="badge">{{numberOfRequests || ""}}</span>
                 </a>
-                <div ng-show="showRequests" class="searchBox animate-show" ng-init="showRequests = false;"
+                <div ng-show="showRequests" class="searchBox animate-show"
                      ng-mouseleave="showRequests = false">
                     <div ng-include="'./templates/partials/friendRequestsBox.html'"></div>
                 </div>

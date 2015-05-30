@@ -8,6 +8,7 @@ socialNetworkApp.controller('navigationController',
 
         if (sessionStorage.getItem('userData')) {
             $scope.name = JSON.parse(sessionStorage.getItem('userData')).name;
+            $scope.username = JSON.parse(sessionStorage.getItem('userData')).username;
         }
 
 
@@ -20,7 +21,7 @@ socialNetworkApp.controller('navigationController',
                     $scope.profileImage = data.profileImageData;
                     //$scope.currUserUsername = sessionStorage['username'];
                     $scope.name = data.name;
-
+                    //$scope.username = data.username;
                 }, function (error) {
                     console.log(error);
                 });
