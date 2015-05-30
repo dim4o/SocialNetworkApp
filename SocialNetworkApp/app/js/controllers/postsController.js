@@ -83,8 +83,9 @@ socialNetworkApp.controller('postsController',
                 });
         };
 
-        $scope.addNewPost = function (content) {
-            postsService.addNewPost($scope.currentUsername, content)
+        $scope.addNewPost = function (content, username) {
+
+            postsService.addNewPost(username, content)
                 .then(function (post) {
                     notificationService.success('Success', 'Post successfully added.');
                     $scope.postsData.unshift(post);

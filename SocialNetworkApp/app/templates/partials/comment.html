@@ -38,7 +38,7 @@
     <!-- Edit Area -->
     <div class="panel-heading">
 
-        <span ng-if="isMyNewsFeed() || userFullData.isFriend || comment.author.isFriend">
+        <span ng-if="isMyOwnWall || isMyNewsFeed() || userFullData.isFriend || comment.author.isFriend">
             <a ng-if="isLiked(comment)" ng-click="likeComment(post.id, comment)">
                 <button class="btn btn-primary btn-xs">
                     Like
@@ -64,7 +64,7 @@
         </span>
         <!-- Likes area -->
 
-        <a ng-if="isMyNewsFeed() || (comment.author.username == myUsername())"
+        <a ng-if="(comment.author.username == myUsername())"
            ng-click="deleteComment(post.id, comment.id, parentIndex, $index)">
             <button class="btn btn-primary btn-xs">
                 Delete {{parentIndex}} - {{$index}}

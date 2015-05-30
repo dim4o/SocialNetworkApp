@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div ng-if="userFullData.isFriend" class="col-md-4">
+    <div ng-if="userFullData.isFriend || isMyOwnWall()" class="col-md-4">
         <div class="well bs-component col-md-12">
             <form class="form-horizontal" name="submitPostForm">
                 <fieldset ng-controller="postsController">
@@ -35,7 +35,7 @@
 
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
-                            <button ng-click="addNewPost(content)"
+                            <button ng-click="addNewPost(content, userFullData.username)"
                                     ng-disabled="submitPostForm.$invalid"
                                     type="submit" class="btn btn-primary">Submit</button>
                         </div>

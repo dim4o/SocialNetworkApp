@@ -40,7 +40,7 @@
         <!-- Edit Area -->
     </div>
     <div class="panel-heading">
-        <span ng-if="isMyNewsFeed() || userFullData.isFriend || post.author.isFriend">
+        <span ng-if="isMyOwnWall() || isMyNewsFeed() || userFullData.isFriend || post.author.isFriend">
             <a ng-if="isLiked(post)" ng-click="likePost(post)">
                 <button class="btn btn-primary btn-xs">
                     Like
