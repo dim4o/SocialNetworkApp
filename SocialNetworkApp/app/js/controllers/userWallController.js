@@ -15,6 +15,7 @@ socialNetworkApp.controller('userWallController',
 
         usersService.getUserFullData($routeParams.username)
             .then(function (userFullData) {
+                $scope.name = userFullData.name;
                 $scope.currUserUsername = null;
                 $scope.userFullData = userFullData;
                 $scope.currUserUsername = userFullData.username;

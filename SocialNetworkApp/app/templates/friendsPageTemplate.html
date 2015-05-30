@@ -2,22 +2,29 @@
 <div class="navbar navbar-default" ng-include="'./templates/partials/navbar.html'"
      ng-controller="navigationController"></div>
 <!--Navigation-->
+<div ng-controller="userWallController">
 
-<div class="row col-md-8 col-md-offset-2" ng-init="loadFriendsList()">
-     <h1>
-          - Friends ({{detailedFriendsList.length}} total)
-     </h1>
+     <div ng-include="'./templates/partials/user-wall-header.html'"></div>
 
-     <input  ng-model="friend.name" class="form-control ng-pristine ng-valid ng-touched"
-             placeholder="Search" ng-change="search(searchName)">
+     <div class="row col-md-8 col-md-offset-2" ng-init="loadFriendsList()">
+          <h1>
+               {{userFullData.name}} - Friends ({{detailedFriendsList.length}} total)
+          </h1>
 
-     <div ng-repeat="friend in detailedFriendsList | filter: friend">
-          <div class="col-md-2 ownFriendsImages"
-               background-directive = "../img/defaultProfileImagePreview.png">
-               <a href="#/users/{{friend.username}}">
-                    <img ng-src="{{friend.profileImageData || './img/defaultProfileImagePreview.png'}}" alt="" class="thumbnail"/>
-                    <span>{{friend.name}}</span>
-               </a>
+          <input  ng-model="friend.name" class="form-control ng-pristine ng-valid ng-touched"
+                  placeholder="Search" ng-change="search(searchName)">
+
+          <div ng-repeat="friend in detailedFriendsList | filter: friend">
+               <div class="col-md-2 ownFriendsImages"
+                    background-directive = "../img/defaultProfileImagePreview.png">
+                    <a href="#/users/{{friend.username}}">
+                         <img ng-src="{{friend.profileImageData || './img/defaultProfileImagePreview.png'}}" alt="" class="thumbnail"/>
+                         <span>{{friend.name}}</span>
+                    </a>
+               </div>
           </div>
      </div>
 </div>
+
+
+

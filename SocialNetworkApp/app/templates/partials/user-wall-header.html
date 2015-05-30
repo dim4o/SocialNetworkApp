@@ -1,0 +1,32 @@
+<header style="margin-bottom: 30px" ng-controller="friendRequestsController">
+    <div>
+        <!--background-directive="{{userFullData.coverImageData}}"-->
+        <div class="jumbotron userWallCoverImage" background-directive="{{userFullData.coverImageData}}">
+            <img ng-src="{{userFullData.coverImageData}}" alt=""/>
+        </div>
+        <div class="userWallProfileImage">
+            <img ng-src="{{userFullData.profileImageData || './img/defaultProfileImage.png'}}"
+                 class="" alt=""/>
+        </div>
+    </div>
+    <div class="col-md-12"
+         ng-init="popupPersonPreview(currUserUsername)">
+
+        <button class="btn btn-primary">
+            {{userFullData.name}} / {{userFullData.gender | genderFilter}}
+        </button>
+        <button ng-if="userFullData.isFriend" ng-disabled="true" class="btn btn-primary">
+            Friends
+        </button>
+        <button ng-if="userFullData.hasPendingRequest || pending" ng-disabled="true" class="btn btn-primary">
+            Pending
+        </button>
+
+        <a ng-click="sendFriendRequest(userData.username)">
+            <button ng-if="!userFullData.isFriend && !userFullData.hasPendingRequest && !pending"
+                    class="btn btn-primary">
+                Invite
+            </button>
+        </a>
+    </div>
+</header>

@@ -1,5 +1,5 @@
 socialNetworkApp.controller('navigationController',
-    function navigationController($scope, $location, $routeParams, $timeout,
+    function navigationController($scope, $location, $routeParams, $timeout, $rootScope,
                                   authorizationService, userProfileService, usSpinnerService) {
         console.log('Navigation Controller Initialization');
         usSpinnerService.stop('spinner-1');
@@ -7,7 +7,7 @@ socialNetworkApp.controller('navigationController',
         $scope.isLogged = authorizationService.isLogged();
 
         if (sessionStorage.getItem('userData')) {
-            $scope.name = JSON.parse(sessionStorage.getItem('userData')).name;
+            $rootScope.name = JSON.parse(sessionStorage.getItem('userData')).name;
             $scope.username = JSON.parse(sessionStorage.getItem('userData')).username;
         }
 

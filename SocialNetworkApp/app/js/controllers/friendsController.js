@@ -1,7 +1,6 @@
 socialNetworkApp.controller('friendsController',
     function friendsController($scope, $routeParams, userProfileService, usersService) {
 
-        //$scope.ownFriends = {};
         $scope.loadFriendsPreview = function () {
             if (!$routeParams.username) {
                 userProfileService.getMyFriendsPreview()
