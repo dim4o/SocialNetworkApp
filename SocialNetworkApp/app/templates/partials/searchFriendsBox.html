@@ -9,7 +9,8 @@
     <div class="searchBox">
         <div ng-repeat="user in users">
             <a href="#/users/{{user.username}}">
-                <img ng-src="{{user.profileImageData}}" alt=""/>
+                <img ng-src="{{user.profileImageData}}"
+                     fallback-src="{{defaultProfileImagePreview}}" alt=""/>
                 {{user.name}}
             </a>
 

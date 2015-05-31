@@ -1,6 +1,8 @@
 socialNetworkApp.controller('friendRequestsController',
-    function friendRequestsController($scope, userProfileService, notificationService) {
+    function friendRequestsController($scope, userProfileService, notificationService,
+                                      PROFILE_IMAGE_PREVIEW) {
         $scope.friendRequestsData = {};
+        $scope.defaultProfileImagePreview = PROFILE_IMAGE_PREVIEW;
         //showFriendRequests();
         // TODO: very similar
         $scope.getNumberOfRequests = function () {

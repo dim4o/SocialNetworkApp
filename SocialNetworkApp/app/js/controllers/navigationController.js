@@ -1,23 +1,25 @@
 socialNetworkApp.controller('navigationController',
     function navigationController($scope, $location, $routeParams, $timeout, $rootScope,
-                                  authorizationService, userProfileService, usSpinnerService) {
+                                  authorizationService, userProfileService,
+                                  usSpinnerService, REFRESH_INTERVAL) {
         console.log('Navigation Controller Initialization');
         usSpinnerService.stop('spinner-1');
 
         $scope.isLogged = authorizationService.isLogged();
 
-        if (sessionStorage.getItem('userData')) {
-            $rootScope.name = JSON.parse(sessionStorage.getItem('userData')).name;
+        if (authorizationService.getUserData()) {
+            $rootScope.name = authorizationService.getUserData().name;
             $scope.username = authorizationService.getUsername();
         }
 
 
-        if (sessionStorage.getItem('userData')) {
-            $scope.profileImage = JSON.parse(sessionStorage.getItem('userData')).profileImageData;
+        if (authorizationService.getUserData()) {
+            $scope.profileImage = authorizationService.getUserData().profileImageData;
         } else if($scope.isLogged){
             userProfileService.getMyProfileData()
                 .then(function (data) {
-                    sessionStorage['userData'] = JSON.stringify(data);
+                    authorizationService.setUserData(data);
+                    //sessionStorage['userData'] = JSON.stringify(data);
                     $scope.profileImage = data.profileImageData;
                     //$scope.currUserUsername = sessionStorage['username'];
                     //$scope.name = data.name;
@@ -31,11 +33,12 @@ socialNetworkApp.controller('navigationController',
             return viewLocation === $location.path();
         };
 
+        // Refresh every 29 (REFRESH_INTERVAL) minutes
         $scope.intervalFunction = function(){
             $timeout(function() {
                 $location.path('/');
                 window.location.reload();
                 $scope.intervalFunction();
-            }, 1740000)
+            }, REFRESH_INTERVAL)
         };
     });

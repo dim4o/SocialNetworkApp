@@ -8,7 +8,8 @@
             <div ng-repeat="friend in friendsPreviewList.friends" >
                 <div class="col-md-4 ownFriendsImages">
                     <a href="#/users/{{friend.username}}">
-                        <img ng-src="{{friend.profileImageData}}" alt="" class="thumbnail"/>
+                        <img ng-src="{{friend.profileImageData}}"
+                             fallback-src="{{defaultProfileImagePreview}}" alt="" class="thumbnail"/>
                         <span>{{friend.name}}</span>
                     </a>
                 </div>

@@ -1,18 +1,21 @@
 socialNetworkApp.controller('friendsController',
-    function friendsController($scope, $routeParams, userProfileService, usersService) {
+    function friendsController($scope, $routeParams, userProfileService,
+                               usersService, authorizationService, PROFILE_IMAGE_PREVIEW) {
+
         var currUserUsername = $scope.currUserUsername;
+        $scope.defaultProfileImagePreview = PROFILE_IMAGE_PREVIEW;
 
         $scope.loadFriendsPreview = function () {
             if (!currUserUsername
-                || currUserUsername == sessionStorage['username']) {
+                || currUserUsername == authorizationService.getUsername()) {
                 userProfileService.getMyFriendsPreview()
                     .then(function (ownFriendsPreviewData) {
-                        for (var i = 0; i < ownFriendsPreviewData.friends.length; i++) {
-                            if (!ownFriendsPreviewData.friends[i].profileImageData) {
-                                ownFriendsPreviewData.friends[i]
-                                    .profileImageData = './img/defaultProfileImagePreview.png';
-                            }
-                        }
+                        //for (var i = 0; i < ownFriendsPreviewData.friends.length; i++) {
+                        //    if (!ownFriendsPreviewData.friends[i].profileImageData) {
+                        //        ownFriendsPreviewData.friends[i]
+                        //            .profileImageData = './img/defaultProfileImagePreview.png';
+                        //    }
+                        //}
                         $scope.friendsPreviewList = ownFriendsPreviewData;
                     }, function (error) {
                         console.log(error);
@@ -29,7 +32,7 @@ socialNetworkApp.controller('friendsController',
         };
 
         $scope.loadFriendsList = function () {
-            if ($routeParams.username == sessionStorage['username']) {
+            if ($routeParams.username == authorizationService.getUsername()) {
                 console.log($routeParams.username);
                 userProfileService.getOwnFriends()
                     .then(function (ownFriendsData) {

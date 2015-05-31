@@ -15,10 +15,10 @@
                   placeholder="Search" ng-change="search(searchName)">
 
           <div ng-repeat="friend in detailedFriendsList | filter: friend">
-               <div class="col-md-2 ownFriendsImages"
-                    background-directive = "../img/defaultProfileImagePreview.png">
+               <div class="col-md-2 ownFriendsImages">
                     <a href="#/users/{{friend.username}}">
-                         <img ng-src="{{friend.profileImageData || './img/defaultProfileImagePreview.png'}}" alt="" class="thumbnail"/>
+                         <img ng-src="{{friend.profileImageData}}"
+                              fallback-src="{{defaultProfileImagePreview}}" alt="" class="thumbnail"/>
                          <span>{{friend.name}}</span>
                     </a>
                </div>

@@ -1,8 +1,9 @@
 socialNetworkApp.controller('postsController',
     function postController($scope, $rootScope, postsService, $routeParams,
-                            notificationService, authorizationService) {
+                            notificationService, authorizationService,
+                            PROFILE_IMAGE_PREVIEW) {
 
-        console.log('Post Controller Initialization');
+        $scope.defaultProfileImagePreview = PROFILE_IMAGE_PREVIEW;
 
         $scope.limit = 1000;
         //$scope.showEditDialog = false;

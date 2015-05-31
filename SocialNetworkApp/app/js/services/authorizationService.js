@@ -2,8 +2,6 @@ socialNetworkApp.factory('authorizationService', authorizationService);
 
 function authorizationService($window) {
     function setAccessToken(userData) {
-        //$window.sessionStorage.setItem('userName', userData.userName);
-        //$window.sessionStorage.setItem('email', userData.email);
         $window.sessionStorage.setItem('access_token', userData.access_token)
     }
 
@@ -19,19 +17,34 @@ function authorizationService($window) {
         }
     }
 
+    function setUsername(username) {
+        $window.sessionStorage.setItem('username', username);
+    }
+
     function cleanSessionStorage() {
         $window.sessionStorage.clear();
     }
 
     function isLogged() {
-        console.log('Call: authService: getAccessToken()');
         return !!getAccessToken();
+    }
+
+    function setUserData(userData) {
+        var userJsonData = JSON.stringify(userData);
+        $window.sessionStorage.setItem('userData', userJsonData);
+    }
+
+    function getUserData() {
+        return JSON.parse($window.sessionStorage.getItem('userData'));
     }
 
     return {
         setAccessToken: setAccessToken,
         getAccessToken: getAccessToken,
         getUsername: getUsername,
+        setUsername :setUsername,
+        setUserData: setUserData,
+        getUserData: getUserData,
         cleanSessionStorage: cleanSessionStorage,
         isLogged: isLogged
     }

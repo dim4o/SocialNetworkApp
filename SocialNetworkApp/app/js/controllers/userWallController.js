@@ -1,5 +1,6 @@
 socialNetworkApp.controller('userWallController',
-    function ($scope, usersService, $routeParams, usSpinnerService, authorizationService) {
+    function ($scope, usersService, $routeParams, usSpinnerService,
+              authorizationService, PAGE_SIZE) {
         //$scope.userWallData = {};
 
         $scope.currUserUsername = $routeParams.username;
@@ -35,7 +36,7 @@ socialNetworkApp.controller('userWallController',
 
         $scope.loadUserWall = function() {
             usSpinnerService.spin('spinner-1');
-            usersService.getFriendWallByPages($routeParams.username, '', 5)
+            usersService.getFriendWallByPages($routeParams.username, '', PAGE_SIZE)
                 .then(function (postsData) {
                     console.log('First page post request: ');
                     console.log(postsData);
@@ -55,7 +56,7 @@ socialNetworkApp.controller('userWallController',
             if ($scope.postsData && $scope.postsData.length > 0) {
                 var lastPost = $scope.postsData[$scope.postsData.length - 1];
                 usSpinnerService.spin('spinner-1');
-                usersService.getFriendWallByPages($routeParams.username, lastPost.id, 5)
+                usersService.getFriendWallByPages($routeParams.username, lastPost.id, PAGE_SIZE)
                     .then(function (newPostsData) {
                         for (var i = 0; i < newPostsData.length; i++) {
                             $scope.postsData.push(newPostsData[i]);

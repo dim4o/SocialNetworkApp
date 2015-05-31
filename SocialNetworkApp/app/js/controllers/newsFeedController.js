@@ -1,7 +1,7 @@
 socialNetworkApp.controller('newsFeedController',
     function newsFeedController($scope, userProfileService, usersService,
                                 notificationService, usSpinnerService,
-                                authorizationService) {
+                                authorizationService, PAGE_SIZE) {
 
         console.log('News and Feeds Controller Initialization');
         //$scope.myFriendsData = {};
@@ -29,7 +29,7 @@ socialNetworkApp.controller('newsFeedController',
 
         $scope.loadNewsFeed = function () {
             usSpinnerService.spin('spinner-1');
-            userProfileService.getNewsFeedsPages('', 5)
+            userProfileService.getNewsFeedsPages('', PAGE_SIZE)
                 .then(function (postsData) {
                     console.log('First page post request: ');
                     console.log(postsData);
@@ -45,7 +45,7 @@ socialNetworkApp.controller('newsFeedController',
             if ($scope.postsData && $scope.postsData.length > 0) {
                 var lastPost = $scope.postsData[$scope.postsData.length - 1];
                 usSpinnerService.spin('spinner-1');
-                userProfileService.getNewsFeedsPages(lastPost.id, 5)
+                userProfileService.getNewsFeedsPages(lastPost.id, PAGE_SIZE)
                     .then(function (newPostsData) {
                         for (var i = 0; i < newPostsData.length; i++) {
                             $scope.postsData.push(newPostsData[i]);

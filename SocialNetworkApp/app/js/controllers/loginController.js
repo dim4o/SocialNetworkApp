@@ -9,7 +9,8 @@
                 usSpinnerService.spin('spinner-1');
                 usersService.login(user)
                     .then(function (data) {
-                        sessionStorage.setItem('username', data.userName);
+                        authorizationService.setUsername(data.userName);
+                        //sessionStorage.setItem('username', data.userName);
                         authorizationService.setAccessToken(data);
                         notificationService.success("Welcome " + data.userName, "Login successful");
                         $location.path('/');

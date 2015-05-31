@@ -4,7 +4,7 @@
         <div class="row panel-body">
             <div class="post-profile-image col-md-4">
                 <img ng-src="{{post.author.profileImageData}}"
-                     fallback-src="./img/defaultProfileImagePreview.png"
+                     fallback-src="{{defaultProfileImagePreview}}"
                      alt="{{post.author.name}}" title="{{post.author.name}}"/><br/>
             </div>
             <div class="post-details col-md-8">
@@ -90,9 +90,13 @@
         <span class="pull-right">
             Likes:
             <!--<span class="glyphicon glyphicon-thumbs-up"></span>-->
-            <span ng-click="getPostPreviewLikes(post.id); showLikesPreview = true;" class="badge">
+            <a href="" title="Show who likes this post">
+                <span ng-click="getPostPreviewLikes(post.id); showLikesPreview = true;"
+                      class="badge">
                 {{post.likesCount}}
-            </span>
+                </span>
+            </a>
+
             <span ng-init="showLikesPreview = false" ng-show="showLikesPreview"
                   ng-mouseleave="showLikesPreview = false;">
                 <span ng-include="'./templates/partials/popupLikesPreview.html'"></span>

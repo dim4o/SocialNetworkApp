@@ -3,7 +3,8 @@
     <div class="panel-heading">
         <div class="row">
             <div class="comment-profile-image col-md-4">
-                <img ng-src="{{comment.author.profileImageData}}" fallback-src="./img/defaultProfileImagePreview.png"
+                <img ng-src="{{comment.author.profileImageData}}"
+                     fallback-src="{{defaultProfileImagePreview}}"
                      alt="{{comment.author.name}}"/>
             </div>
             <div class="col-md-8">
@@ -54,9 +55,13 @@
         <!-- Likes area -->
         <span class="pull-right">
             Likes:
-            <span ng-click="getCommentPreviewLikes(post.id, comment.id); showLikesPreview = true;" class="badge">
+            <a href="" title="Show who likes this post">
+                <span ng-click="getCommentPreviewLikes(post.id, comment.id); showLikesPreview = true;"
+                      class="badge">
                 {{comment.likesCount}}
-            </span>
+                </span>
+            </a>
+
             <span ng-init="showLikesPreview = false" ng-show="showLikesPreview"
                   ng-mouseleave="showLikesPreview = false;">
                 <span ng-include="'./templates/partials/popupLikesPreview.html'"></span>

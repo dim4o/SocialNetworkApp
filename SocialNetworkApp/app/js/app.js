@@ -69,29 +69,9 @@ socialNetworkApp.config(['usSpinnerConfigProvider', function (usSpinnerConfigPro
 }]);
 
 socialNetworkApp.constant({
-    BASE_URL: 'http://softuni-social-network.azurewebsites.net/api/'
+    BASE_URL: 'http://softuni-social-network.azurewebsites.net/api/',
+    REFRESH_INTERVAL: 1740000,
+    PAGE_SIZE: 5,
+    PROFILE_IMAGE_PREVIEW: './img/defaultProfileImagePreview.png'
 });
 
-//socialNetworkApp.animation('.hide-animation', function () {
-//    return {
-//        beforeAddClass : function(element, className, done) {
-//            if (className === 'ng-hide') {
-//                element.animate({
-//                    opacity: 0
-//                },500, done);
-//            } else {
-//                done();
-//            }
-//        },
-//        removeClass : function(element, className, done) {
-//            if (className === 'ng-hide') {
-//                element.css('opacity',0);
-//                element.animate({
-//                    opacity: 1
-//                }, 500, done);
-//            } else {
-//                done();
-//            }
-//        }
-//    };
-//});
