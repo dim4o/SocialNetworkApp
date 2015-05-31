@@ -1,9 +1,10 @@
 socialNetworkApp.controller('friendsController',
     function friendsController($scope, $routeParams, userProfileService, usersService) {
+        var currUserUsername = $scope.currUserUsername;
 
         $scope.loadFriendsPreview = function () {
-            if (!$routeParams.username ||
-                $routeParams.username == sessionStorage['username']) {
+            if (!currUserUsername
+                || currUserUsername == sessionStorage['username']) {
                 userProfileService.getMyFriendsPreview()
                     .then(function (ownFriendsPreviewData) {
                         for (var i = 0; i < ownFriendsPreviewData.friends.length; i++) {
@@ -17,8 +18,7 @@ socialNetworkApp.controller('friendsController',
                         console.log(error);
                     });
             } else {
-                var friendsUsername = $routeParams.username;
-                usersService.getFriendsFriendsPreview(friendsUsername)
+                usersService.getFriendsFriendsPreview(currUserUsername)
                     .then(function (fiendsFriendsData) {
                         console.log(fiendsFriendsData);
                         $scope.friendsPreviewList = fiendsFriendsData; // TODO: za redakciq

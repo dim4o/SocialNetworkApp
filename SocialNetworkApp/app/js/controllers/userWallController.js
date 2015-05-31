@@ -1,24 +1,16 @@
 socialNetworkApp.controller('userWallController',
-    function ($scope, usersService, $routeParams, usSpinnerService) {
+    function ($scope, usersService, $routeParams, usSpinnerService, authorizationService) {
         //$scope.userWallData = {};
 
         $scope.currUserUsername = $routeParams.username;
 
         $scope.isMyOwnWall = function () {
-            return $routeParams.username = sessionStorage['username'];
+            return $scope.currUserUsername == authorizationService.getUsername();
         };
-        //usersService.getFriendWallByPages($routeParams.username)
-        //        .then(function (userWallDataInfo) {
-        //            $scope.postsData = userWallDataInfo;
-        //            console.log($scope.postsData);
-        //            $scope.currentUsername = $routeParams.username;
-        //        }, function (error) {
-        //             console.log(error);
-        //        });
 
         usersService.getUserFullData($routeParams.username)
             .then(function (userFullData) {
-                $scope.name = userFullData.name;
+                //$scope.nameOfUser = userFullData.name;
                 $scope.currUserUsername = null;
                 $scope.userFullData = userFullData;
                 $scope.currUserUsername = userFullData.username;
@@ -31,7 +23,7 @@ socialNetworkApp.controller('userWallController',
             $scope.showPopup = true;
             $scope.userData = {};
             $scope.userData.profileImageData = './img/defaultProfileImage.png';
-            //$(".anim").show(300).delay(900).hide(300);
+
             usersService.getUserPreviewData(username)
                 .then(function (userData) {
                     $scope.userData = userData;
@@ -40,13 +32,6 @@ socialNetworkApp.controller('userWallController',
                     console.log(error);
                 });
         };
-        //userData.getFriendsFriendsPreview($routeParams.username)
-        //    .then(function (fiendsFriendsData) {
-        //        console.log(fiendsFriendsData);
-        //        alert('Friends');
-        //    }, function (error) {
-        //        console.log(error);
-        //    });
 
         $scope.loadUserWall = function() {
             usSpinnerService.spin('spinner-1');
@@ -83,21 +68,4 @@ socialNetworkApp.controller('userWallController',
                     });
             }
         };
-
-        // new
-        //usersService.getFriendsFriendsPreview($routeParams.username)
-        //    .then(function (fiendsFriendsData) {
-        //        console.log(fiendsFriendsData);
-        //        $scope.friendsPreviewList = fiendsFriendsData; // TODO: za redakciq
-        //    }, function (error) {
-        //        console.log(error);
-        //    });
-        //
-        //usersService.getDetailedFriendsFriendsList($routeParams.username)
-        //    .then(function (detailedFriendsFriendsList) {
-        //        $scope.detailedFriendsList = detailedFriendsFriendsList;
-        //    }, function (error) {
-        //        console.log(error);
-        //    });
-        
     });

@@ -1,5 +1,6 @@
 socialNetworkApp.controller('postsController',
-    function postController($scope, $rootScope, postsService, $routeParams, notificationService) {
+    function postController($scope, $rootScope, postsService, $routeParams,
+                            notificationService, authorizationService) {
 
         console.log('Post Controller Initialization');
 
@@ -193,30 +194,20 @@ socialNetworkApp.controller('postsController',
                 })
         };
 
-        //$(document).ready(function(){
-        //    $('[data-toggle="popover"]').popover();
-        //});
-
-
-
+        // Authorizations for: delete, like/unlike and comment buttons
         $scope.isMyNewsFeed = function () {
             return !$routeParams.username;
         };
 
         $scope.isMyOwnWall = function () {
-            return $routeParams.username == sessionStorage['username'] ;
+            return $routeParams.username == authorizationService.getUsername() ;
         };
 
         $scope.myUsername = function () {
-            return sessionStorage['username'];
+            return authorizationService.getUsername();
         };
 
         $scope.toLocalTimeZone = function(item){
             item.date = new Date(item.date);
         };
-
-        $scope.click = function () {
-            alert('AAAAAAa');
-        };
-
     });

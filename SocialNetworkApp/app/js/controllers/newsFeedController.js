@@ -1,9 +1,12 @@
 socialNetworkApp.controller('newsFeedController',
-    function newsFeedController($scope, userProfileService, usersService, notificationService, usSpinnerService) {
+    function newsFeedController($scope, userProfileService, usersService,
+                                notificationService, usSpinnerService,
+                                authorizationService) {
+
         console.log('News and Feeds Controller Initialization');
         //$scope.myFriendsData = {};
 
-        $scope.currUserUsername = sessionStorage['username'];
+        $scope.currUserUsername = authorizationService.getUsername();
 
         // TODO: duplicate method - userWallController
         $scope.popupPersonPreview = function (username) {
@@ -23,18 +26,6 @@ socialNetworkApp.controller('newsFeedController',
         $scope.hidePopupPreview = function () {
             $scope.showPopup = false;
         };
-
-        //$scope.pending = false;
-        //$scope.sendFriendRequest = function (username) {
-        //    userProfileService.sendFriendRequest(username)
-        //        .then(function (success) {
-        //            notificationService.success("Success", "Friend request is sent.");
-        //            $scope.pending = true;
-        //        }, function (error) {
-        //            notificationService.error("Error", "The request can not be sent;");
-        //            console.log(error);
-        //        })
-        //};
 
         $scope.loadNewsFeed = function () {
             usSpinnerService.spin('spinner-1');
@@ -67,25 +58,4 @@ socialNetworkApp.controller('newsFeedController',
                     });
             }
         };
-
-
-        // new
-        //userProfileService.getMyFriendsPreview()
-        //    .then(function (ownFriendsPreviewData) {
-        //        for (var i = 0; i < ownFriendsPreviewData.friends.length; i++) {
-        //            if (!ownFriendsPreviewData.friends[i].profileImageData) {
-        //                ownFriendsPreviewData.friends[i]
-        //                    .profileImageData = './img/defaultProfileImagePreview.png';
-        //            }
-        //        }
-        //        $scope.friendsPreviewList = ownFriendsPreviewData;
-        //    }, function (error) {
-        //        console.log(error);
-        //    });
-        //userProfileService.getOwnFriends()
-        //    .then(function (ownFriendsData) {
-        //        $scope.detailedFriendsList = ownFriendsData;
-        //    }, function (error) {
-        //        console.log(error);
-        //    });
 });

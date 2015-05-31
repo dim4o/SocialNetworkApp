@@ -77,7 +77,7 @@
         <a ng-click="deletePost(post, $index);">
             <button ng-if="isMyOwnWall() || (post.author.username == myUsername())"
                     class="btn btn-primary btn-xs">
-                Delete
+                Delete - {{isMyOwnWall()}}
             </button>
         </a>
 

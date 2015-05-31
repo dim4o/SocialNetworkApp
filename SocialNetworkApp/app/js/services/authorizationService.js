@@ -14,8 +14,8 @@ function authorizationService($window) {
     }
 
     function getUsername() {
-        if ($window.sessionStorage.getItem('userName')) {
-            return $window.sessionStorage.getItem('userName');
+        if ($window.sessionStorage.getItem('username')) {
+            return $window.sessionStorage.getItem('username');
         }
     }
 
