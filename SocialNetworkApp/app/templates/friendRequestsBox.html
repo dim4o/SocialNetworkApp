@@ -1,8 +1,0 @@
-<div ng-repeat="request in friendRequestsData">
-    <img ng-src="{{request.user.profileImageData}}" alt=""/>
-    <span>{{request.user.name}}</span>
-    <div>
-        <button class="btn btn-primary btn-xs" ng-click="acceptRequest(request.id)">Accept</button>
-        <button class="btn btn-primary btn-xs" ng-click="rejectRequest(request.id)">Reject</button>
-    </div>
-</div>
