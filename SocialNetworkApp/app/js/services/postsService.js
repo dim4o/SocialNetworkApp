@@ -1,29 +1,8 @@
 socialNetworkApp.factory('postsService', postsService);
 
-function postsService($http, $q, baseServiceUrl, authorizationService, $rootScope) {
-    var serviceUrl = baseServiceUrl + 'posts/';
+function postsService(requesterService, BASE_URL) {
 
-    function userDataRequester(method, url, data) {
-        var deferred = $q.defer();
-        var headers = {
-            Authorization: 'Bearer ' + authorizationService.getAccessToken()
-        };
-
-        $http({
-            method: method,
-            url: url,
-            headers: headers,
-            data: data
-        })
-            .success(function (data, status, headers, config) {
-                deferred.resolve(data, status, headers, config);
-            })
-            .error(function (data, status, headers, config) {
-                deferred.reject(data, status, headers, config);
-            });
-
-        return deferred.promise;
-    }
+    var serviceUrl = BASE_URL + 'posts/';
 
     // Posts services
     var addNewPost = function (username, content) {
@@ -31,64 +10,66 @@ function postsService($http, $q, baseServiceUrl, authorizationService, $rootScop
             postContent: content,
             username: username
         };
-        return userDataRequester('POST', serviceUrl, data)
+        return requesterService.makeRequest('POST', serviceUrl, data)
     };
 
     var deletePost = function (postId) {
-        return userDataRequester('DELETE', serviceUrl + postId, null);
+        return requesterService.makeRequest('DELETE', serviceUrl + postId, null);
     };
 
     var editPost = function (postId, comment) {
         var data = {postContent: comment};
-        return userDataRequester('PUT', serviceUrl + postId, data);
+        return requesterService.makeRequest('PUT', serviceUrl + postId, data);
     };
 
     var likePost = function (postId) {
-        return userDataRequester('POST', serviceUrl + postId + '/likes', null);
+        return requesterService.makeRequest('POST', serviceUrl + postId + '/likes', null);
     };
 
     var unlikePost = function (postId) {
-        return userDataRequester('DELETE', serviceUrl + postId + '/likes', null);
+        return requesterService.makeRequest('DELETE', serviceUrl + postId + '/likes', null);
     };
 
     // Posts/Comments services
     var addCommentToPost = function (postId, comment) {
         var data = {commentContent: comment};
-        return userDataRequester('POST', serviceUrl + postId +
+
+        return requesterService.makeRequest('POST', serviceUrl + postId +
             '/comments', data);
     };
 
     var editComment = function (postId, commentId, comment) {
         var data = {commentContent: comment};
-        return userDataRequester('PUT', serviceUrl + postId +
+
+        return requesterService.makeRequest('PUT', serviceUrl + postId +
             '/comments/' + commentId, data);
     };
 
     var deleteComment = function (postId, commentId) {
-        return userDataRequester('DELETE', serviceUrl + postId +
+        return requesterService.makeRequest('DELETE', serviceUrl + postId +
             '/comments/' + commentId, null);
     };
 
     var likeComment = function (postId, commentId) {
-        return userDataRequester('POST', serviceUrl + postId +
+        return requesterService.makeRequest('POST', serviceUrl + postId +
             '/comments/' + commentId + '/likes', null);
     };
 
     var unlikeComment = function (postId, commentId) {
-        return userDataRequester('DELETE', serviceUrl + postId +
+        return requesterService.makeRequest('DELETE', serviceUrl + postId +
             '/comments/' + commentId + '/likes', null);
     };
 
     var getPostComments = function (postId) {
-        return userDataRequester('GET', serviceUrl + postId + '/comments')
+        return requesterService.makeRequest('GET', serviceUrl + postId + '/comments')
     };
     
     var getPostPreviewLikes = function (postId) {
-        return userDataRequester('GET', serviceUrl + postId + '/likes/preview');
+        return requesterService.makeRequest('GET', serviceUrl + postId + '/likes/preview');
     };
 
     var getCommentPreviewLikes = function (postId, commentId) {
-        return userDataRequester('GET', serviceUrl + postId +
+        return requesterService.makeRequest('GET', serviceUrl + postId +
             '/comments/' + commentId + '/likes/preview');
     };
 

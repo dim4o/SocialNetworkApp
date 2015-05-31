@@ -68,7 +68,9 @@ socialNetworkApp.config(['usSpinnerConfigProvider', function (usSpinnerConfigPro
         });
 }]);
 
-socialNetworkApp.constant('baseServiceUrl',  'http://softuni-social-network.azurewebsites.net/api/');
+socialNetworkApp.constant({
+    BASE_URL: 'http://softuni-social-network.azurewebsites.net/api/'
+});
 
 //socialNetworkApp.animation('.hide-animation', function () {
 //    return {
