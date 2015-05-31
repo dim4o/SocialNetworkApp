@@ -6,6 +6,9 @@ socialNetworkApp.controller('navigationController',
         usSpinnerService.stop('spinner-1');
 
         $scope.isLogged = authorizationService.isLogged();
+        $scope.isMyOwnWall = function () {
+            return $routeParams.username == authorizationService.getUsername();
+        };
 
         if (authorizationService.getUserData()) {
             $rootScope.name = authorizationService.getUserData().name;

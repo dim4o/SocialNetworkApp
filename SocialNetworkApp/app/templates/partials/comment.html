@@ -22,7 +22,7 @@
     <div class="panel-body" ng-show="!showEditArea">
         {{comment.commentContent}}<br/>
     </div>
-    {{showEditDialog}}
+
     <!-- Edit Area -->
     <div class="panel-body animate-show" ng-show="showEditArea">
 
@@ -72,7 +72,7 @@
         <a ng-if="(comment.author.username == myUsername())"
            ng-click="deleteComment(post.id, comment.id, parentIndex, $index)">
             <button class="btn btn-primary btn-xs">
-                Delete {{parentIndex}} - {{$index}}
+                Delete
             </button>
         </a>
 
@@ -80,24 +80,11 @@
         <a ng-click="showEditArea = true" ng-init="showEditArea = false;">
             <button ng-if="comment.author.username == myUsername()" class="btn btn-primary btn-xs"
                     ng-disabled="showEditArea">
-                Edit-{{showEditDialog}}
+                Edit
             </button>
         </a>
 
         <div class="clearfix"></div>
-
-        <!--<div class="panel-body" ng-show="showEditArea">-->
-
-            <!--<textarea ng-model="editedComment" class="form-control">{{comment.commentContent}}-->
-            <!--</textarea>-->
-
-            <!--<button class="btn btn-primary btn-xs"-->
-                    <!--ng-click="editComment(post.id, comment.id, parentIndex, $index, 'new comment111')">-->
-                <!--Save-->
-            <!--</button>-->
-            <!--<button class="btn btn-primary btn-xs" ng-click="showEditArea = false;">Cancel</button>-->
-        <!--</div>-->
-        <!--{{comment}}-->
     </div>
 </div>
 <!--comment-->

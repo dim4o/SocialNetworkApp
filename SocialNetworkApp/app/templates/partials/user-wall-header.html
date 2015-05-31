@@ -18,7 +18,7 @@
         <button ng-if="userFullData.isFriend" ng-disabled="true" class="btn btn-primary">
             Friends
         </button>
-        <button ng-if="userFullData.hasPendingRequest || pending" ng-disabled="true" class="btn btn-primary">
+        <button ng-if="(userFullData.hasPendingRequest || pending) && !isMyOwnWall()" ng-disabled="true" class="btn btn-primary">
             Pending
         </button>
 
