@@ -38,13 +38,8 @@ socialNetworkApp.controller('userWallController',
             usSpinnerService.spin('spinner-1');
             usersService.getFriendWallByPages($routeParams.username, '', PAGE_SIZE)
                 .then(function (postsData) {
-                    console.log('First page post request: ');
-                    console.log(postsData);
-                    //return postsData;
                     $scope.postsData = postsData;
                     $scope.currentUsername = $routeParams.username;
-
-
                     usSpinnerService.stop('spinner-1');
                 }, function (error) {
                     console.log(error);
@@ -62,8 +57,6 @@ socialNetworkApp.controller('userWallController',
                             $scope.postsData.push(newPostsData[i]);
                         }
                         usSpinnerService.stop('spinner-1');
-                        console.log('New pages post requests: ');
-                        console.log(newPostsData);
                     }, function () {
                         console.log(error);
                     });

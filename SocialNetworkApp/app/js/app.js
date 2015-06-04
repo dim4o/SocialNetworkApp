@@ -4,21 +4,31 @@ var socialNetworkApp = angular.module('socialNetworkApp',
 socialNetworkApp.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider
-            //.when('/logout', {
-            //    redirectTo: '/'
-            //})
             .when('/', {
-                //templateUrl: 'templates/welcome.html'
                 templateUrl: 'templates/mainPageTemplate.html',
                 controller: 'navigationController'
             })
             .when('/register', {
                 templateUrl: 'templates/register.html',
-                controller: 'registerController'
+                controller: 'registerController',
+                resolve: {
+                    isLogged: function ($location, authorizationService) {
+                        if (authorizationService.getAccessToken()) {
+                            $location.path('/');
+                        }
+                    }
+                }
             })
             .when('/login', {
                 templateUrl: 'templates/login.html',
-                controller: 'loginController'
+                controller: 'loginController',
+                resolve: {
+                    isLogged: function ($location, authorizationService) {
+                        if (authorizationService.getAccessToken()) {
+                            $location.path('/');
+                        }
+                    }
+                }
             })
             .when('/edit-profile', {
                 templateUrl: 'templates/edit-profile.html',
@@ -69,9 +79,10 @@ socialNetworkApp.config(['usSpinnerConfigProvider', function (usSpinnerConfigPro
 }]);
 
 socialNetworkApp.constant({
-    BASE_URL: 'http://softuni-social-network.azurewebsites.net/api/',
+    BASE_URL: 'http://localhost:49399/api/',
     REFRESH_INTERVAL: 1740000,
     PAGE_SIZE: 5,
     PROFILE_IMAGE_PREVIEW: './img/defaultProfileImagePreview.png'
 });
 
+//BASE_URL: 'http://softuni-social-network.azurewebsites.net/api/',

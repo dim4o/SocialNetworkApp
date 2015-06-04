@@ -7,41 +7,56 @@
             <fieldset>
                 <legend>Register</legend>
                 <div class="form-group">
-                    <label for="inputUsername" class="col-lg-2 control-label">Username</label>
+                    <label for="inputUsername" class="col-lg-2 control-label">
+                        Username
+                    </label>
                     <div class="col-lg-10">
-                        <input ng-model="user.username" type="text" class="form-control" id="inputUsername" placeholder="Username">
+                        <input ng-model="user.username" type="text" class="form-control"
+                               id="inputUsername" placeholder="Username">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+                    <label for="inputPassword" class="col-lg-2 control-label">
+                        Password
+                    </label>
                     <div class="col-lg-10">
                         <input ng-model="user.password" ng-minlength="6" ng-maxlength="100"
-                               type="password" class="form-control" id="inputPassword" placeholder="Password">
+                               type="password" class="form-control" id="inputPassword"
+                               placeholder="Password">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="confirmPassword" class="col-lg-2 control-label">Confirm Password</label>
+                    <label for="confirmPassword" class="col-lg-2 control-label">
+                        Confirm Password
+                    </label>
                     <div class="col-lg-10">
-                        <input ng-model="user.confirmPassword" ng-minlength="6" ng-maxlength="100" type="password" class="form-control"
-                               id="confirmPassword" placeholder="Confirm Password" required>
+                        <input ng-model="user.confirmPassword" ng-minlength="6" ng-maxlength="100"
+                               type="password" class="form-control" id="confirmPassword"
+                               placeholder="Confirm Password" compare-to="user.password" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputName" class="col-lg-2 control-label">Name</label>
+                    <label for="inputName" class="col-lg-2 control-label">
+                        Name
+                    </label>
                     <div class="col-lg-10">
                         <input ng-model="user.name" type="text" class="form-control"
                                id="inputName" placeholder="Name" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                    <label for="inputEmail" class="col-lg-2 control-label">
+                        Email
+                    </label>
                     <div class="col-lg-10">
                         <input validate-email ng-model="user.email" type="text" class="form-control"
                                id="inputEmail" placeholder="Email" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-2 control-label">Gender</label>
+                    <label class="col-lg-2 control-label">
+                        Gender
+                    </label>
                     <div class="col-lg-10">
                         <div class="radio-inline">
                             <label>
@@ -66,7 +81,8 @@
 
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <button ng-disabled="registerForm.$invalid" ng-click="register(user)" type="submit" class="btn btn-primary">
+                        <button ng-disabled="registerForm.$invalid || (user.password != user.confirmPassword)"
+                                ng-click="register(user)" type="submit" class="btn btn-primary">
                             Register
                         </button>
                         <a href="#/">
