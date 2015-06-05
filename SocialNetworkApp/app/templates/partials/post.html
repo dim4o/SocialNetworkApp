@@ -9,12 +9,15 @@
             </div>
             <div class="post-details col-md-8">
                 <span ng-init="showDiv = false;"
-                      ng-click="popupPersonPreview(post.author.username, $index);showDiv = true;">
-                    <strong><a href="">{{post.author.name}}</a></strong>
+                      ng-click="popupPersonPreview(post.author.username, $index); showDiv = true;">
+                    <strong>
+                        <a href="">{{post.author.name}}</a>
+                    </strong>
                 </span> to <strong>{{post.wallOwner.name}}</strong><br/>
                 <span>{{post.date | date : 'd MMM yyyy, HH:mm:ss'}}</span>
 
-                <div ng-mouseleave="showDiv = false;" ng-show="showDiv" class="popupPreview animate-show">
+                <div ng-controller="friendsController" ng-mouseleave="showDiv = false;"
+                     ng-show="showDiv" class="popupPreview animate-show">
                     <div ng-include="'templates/partials/popupUserDetails.html'"></div>
                 </div>
             </div>
@@ -115,22 +118,25 @@
     <!--<button ng-click="addCommentToPost(feed, $index, comment)">Send</button>-->
 <!--</div>-->
 <div ng-show="showCommentArea" class="well bs-component col-md-10 pull-right animate-show">
-    <form class="form-horizontal" name="postCommentForm">
+    <form class="form-horizontal" name="postCommentForm" novalidate>
         <fieldset>
-            <div class="form-group">
-                <div class="col-lg-10">
+            <div class="form-group row col-lg-12">
+                <!--<div class="col-lg-10">-->
                     <textarea ng-model="comment" class="form-control" rows="3"
-                              minlength="2" id="textArea" placeholder="Message" required></textarea>
-                </div>
+                              minlength="2" id="textArea" placeholder="Message" required>
+
+                    </textarea>
+                <!--</div>-->
             </div>
 
-            <div class="form-group">
+            <div class="form-group row col-lg-12">
                 <!--<div class="col-lg-10 col-lg-offset-1">-->
-                    <button ng-disabled="postCommentForm.$invalid" ng-click="addCommentToPost(post, $index, comment)"
+                    <button ng-disabled="postCommentForm.$invalid"
+                            ng-click="addCommentToPost(post, $index, comment); comment=''"
                             type="submit" class="btn btn-primary btn-xs pull-right">
                         Post comment
                     </button>
-                    <button ng-click="showCommentArea = false;"
+                    <button ng-click="showCommentArea = false; comment=''"
                             type="submit" class="btn btn-primary btn-xs pull-right">
                         Cancel comment
                     </button>

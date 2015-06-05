@@ -26,7 +26,8 @@
     <!-- Edit Area -->
     <div class="panel-body animate-show" ng-show="showEditArea">
 
-        <textarea class="form-control" ng-model="content" ng-init="content = comment.commentContent" >
+        <textarea class="form-control" data-ng-model="content"
+                  ng-init="content = comment.commentContent" >
             {{content}}
         </textarea>
 

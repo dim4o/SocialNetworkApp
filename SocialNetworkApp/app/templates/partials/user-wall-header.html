@@ -1,4 +1,4 @@
-<header style="margin-bottom: 30px" ng-controller="friendRequestsController">
+<header style="margin-bottom: 30px" ng-controller="friendsController">
     <div>
         <!--background-directive="{{userFullData.coverImageData}}"-->
         <div class="jumbotron userWallCoverImage" background-directive="{{userFullData.coverImageData}}">
@@ -18,7 +18,8 @@
         <button ng-if="userFullData.isFriend" ng-disabled="true" class="btn btn-primary">
             Friends
         </button>
-        <button ng-if="(userFullData.hasPendingRequest || pending) && !isMyOwnWall()" ng-disabled="true" class="btn btn-primary">
+        <button ng-if="(userFullData.hasPendingRequest || pending) && !isMyOwnWall()"
+                ng-disabled="true" class="btn btn-primary">
             Pending
         </button>
 

@@ -111,6 +111,7 @@ socialNetworkApp.controller('postsController',
                 .then(function (commentData) {
                     console.log(commentData);
                     $scope.postsData[i]['comments'].unshift(commentData);
+                    $scope.postsData[i].totalCommentsCount++;
                     notificationService.success('Success', 'Comment successfully added.');
                 }, function (error) {
                     notificationService.error('Error', 'Failed to add comment.');
@@ -138,6 +139,7 @@ socialNetworkApp.controller('postsController',
             postsService.deleteComment(postId, commentId)
                 .then(function () {
                     $scope.postsData[postIndex]['comments'].splice(commentIndex, 1);
+                    $scope.postsData[postIndex].totalCommentsCount--;
                     notificationService.success('Success', 'Comment successfully deleted.');
                 }, function (error) {
                     notificationService.error('Error', 'Failed to delete comment.')

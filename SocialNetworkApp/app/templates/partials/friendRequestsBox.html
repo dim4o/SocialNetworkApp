@@ -2,7 +2,7 @@
     <img ng-src="{{request.user.profileImageData}}" fallback-src="{{defaultProfileImagePreview}}" alt=""/>
     <span>{{request.user.name}}</span>
     <div>
-        <a ng-init="isFriends = false;" ng-click="acceptRequest(request); isFriends = true">
+        <a ng-init="isFriends = false;" ng-click="acceptRequest(request); isFriends = true;">
             <button ng-if="!isFriends" class="btn btn-primary btn-xs" >
                 Accept / {{isFriends}}
             </button>
